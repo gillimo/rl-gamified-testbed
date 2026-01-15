@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "account": {
+    "name": "Example",
+    "mode": "main",
+    "stats": {},
+    "resources": {}
+  },
+  "skills": {},
+  "goals": {
+    "short": ["define first goal"],
+    "mid": [],
+    "long": []
+  }
+}

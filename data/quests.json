@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Druidic Ritual",
+    "skill_reqs": {"herblore": 3},
+    "quest_reqs": [],
+    "item_reqs": ["raw chicken", "raw beef", "raw rat meat", "raw bear meat"],
+    "unlocks": ["herblore"]
+  },
+  {
+    "name": "Recipe for Disaster",
+    "skill_reqs": {"cooking": 70, "thieving": 53, "agility": 48},
+    "quest_reqs": ["Goblin Diplomacy", "Big Chompy Bird Hunting"],
+    "item_reqs": [],
+    "unlocks": ["barrows gloves"]
+  }
+]

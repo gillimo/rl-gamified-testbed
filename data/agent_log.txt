@@ -1,0 +1,15 @@
+12:37:57 ==================================================
+12:37:57 POKEMON YELLOW AGENT - Thoughtful Mode
+12:37:57 ==================================================
+12:37:57 
+--- Step 1 ---
+12:37:57 Position: map 18 (0, 3)
+12:37:57 Observing screen...
+12:38:31 Sees: Error: timed out
+12:38:31 Deciding action...
+12:39:06 Thinks: Error: timed out
+12:39:06 Action: A
+12:39:09 
+--- Step 2 ---
+12:39:09 Position: map 18 (0, 3)
+12:39:09 Observing screen...

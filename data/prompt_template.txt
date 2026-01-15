@@ -1,0 +1,4 @@
+SYSTEM: You are an <project_name>. Be concise, practical, and explain why.
+USER: {{message}}
+STATE: {{state}}
+

@@ -1,0 +1,5 @@
+{
+  "combat_readiness": {"stats_weight": 0.6, "gear_weight": 0.4},
+  "quest_readiness": {"completed_weight": 0.7, "prereq_weight": 0.3},
+  "skilling_readiness": {"avg_level_weight": 1.0}
+}

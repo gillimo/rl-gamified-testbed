@@ -1,0 +1,2243 @@
+# Agent Notes
+
+Use this file as a running scratchpad for observations, questions, and plans.
+
+## Session Log
+
+- 2026-01-14: Initialized project and set up emulator bridge scaffolding.
+- 2026-01-14 20:04:43: Smoke test: emulator state missing or unreadable.
+- 2026-01-14 20:06:02: Smoke test: emulator state missing or unreadable.
+- 2026-01-14 20:06:13: Smoke test: emulator state missing or unreadable.
+- 2026-01-14 20:07:00: Smoke test: emulator state missing or unreadable.
+- 2026-01-14 20:07:31: Smoke test: emulator state missing or unreadable.
+- 2026-01-14 20:15:04: Smoke test: emulator state missing or unreadable.
+- 2026-01-14 20:15:22: Smoke test: emulator state missing or unreadable.
+- 2026-01-14 20:19:09: Smoke test: emulator state read successfully.
+- 2026-01-14 20:20:28: Smoke test: emulator state read successfully.
+- 2026-01-14 20:20:34: Starting agent loop.
+- 2026-01-14 20:20:34: step 1: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:20:58: Starting agent loop.
+- 2026-01-14 20:20:58: step 1: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:20:59: step 2: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:21:00: step 3: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:21:00: step 4: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:21:01: step 5: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:21:02: step 6: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:21:02: step 7: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:21:03: step 8: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:21:04: step 9: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:21:04: step 10: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:21:05: Agent loop complete.
+- 2026-01-14 20:26:50: Starting agent loop.
+- 2026-01-14 20:26:50: step 1: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:26:51: step 2: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:26:52: step 3: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:26:52: step 4: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:26:53: step 5: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:26:54: step 6: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:26:55: step 7: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:26:55: step 8: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:26:55: Skipped action due to focus failure.
+- 2026-01-14 20:26:55: step 9: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:26:56: step 10: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:26:57: step 11: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:26:58: step 12: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:26:58: step 13: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:26:59: step 14: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:26:59: step 15: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:27:00: step 16: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:27:01: step 17: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:27:01: step 18: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:27:02: step 19: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:27:03: step 20: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:27:03: step 21: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:27:04: step 22: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:27:05: step 23: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:27:05: step 24: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:27:06: step 25: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:27:07: step 26: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:27:07: step 27: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:27:08: step 28: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:27:09: step 29: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:27:09: step 30: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:27:10: Agent loop complete.
+- 2026-01-14 20:28:05: Starting agent loop.
+- 2026-01-14 20:28:05: step 1: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:06: step 2: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:07: step 3: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:07: step 4: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:08: step 5: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:08: step 6: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:09: step 7: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:10: step 8: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:10: step 9: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:11: step 10: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:12: step 11: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:12: step 12: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:13: step 13: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:14: step 14: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:14: step 15: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:15: step 16: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:16: step 17: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:16: step 18: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:17: step 19: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:18: step 20: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:18: step 21: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:19: step 22: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:19: step 23: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:20: step 24: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:21: step 25: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:21: step 26: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:22: step 27: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:22: step 28: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:23: step 29: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:24: step 30: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:28:24: Agent loop complete.
+- 2026-01-14 20:29:17: Smoke test: emulator state read successfully.
+- 2026-01-14 20:31:17: Smoke test: emulator state read successfully.
+- 2026-01-14 20:32:06: Smoke test: emulator state read successfully.
+- 2026-01-14 20:37:02: Warning: initial focus failed.
+- 2026-01-14 20:37:02: Starting agent loop.
+- 2026-01-14 20:37:02: step 1: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:37:02: Skipped action due to focus failure.
+- 2026-01-14 20:37:02: step 2: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:37:02: Skipped action due to focus failure.
+- 2026-01-14 20:37:02: step 3: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:37:02: Skipped action due to focus failure.
+- 2026-01-14 20:37:02: step 4: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:37:02: Skipped action due to focus failure.
+- 2026-01-14 20:37:02: step 5: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:37:02: Skipped action due to focus failure.
+- 2026-01-14 20:37:02: step 6: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:37:02: Skipped action due to focus failure.
+- 2026-01-14 20:37:02: step 7: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:37:02: Skipped action due to focus failure.
+- 2026-01-14 20:37:02: step 8: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:37:02: Skipped action due to focus failure.
+- 2026-01-14 20:37:02: step 9: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:37:03: Skipped action due to focus failure.
+- 2026-01-14 20:37:03: step 10: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:37:03: Skipped action due to focus failure.
+- 2026-01-14 20:37:03: Agent loop complete.
+- 2026-01-14 20:43:38: Smoke test: emulator state read successfully.
+- 2026-01-14 20:46:01: Starting agent loop.
+- 2026-01-14 20:46:01: step 1: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:02: step 2: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:03: step 3: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:03: step 4: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:04: step 5: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:05: step 6: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:05: Backoff triggered after 6 no-move steps.
+- 2026-01-14 20:46:07: step 7: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:07: Backoff triggered after 7 no-move steps.
+- 2026-01-14 20:46:08: step 8: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:09: Backoff triggered after 8 no-move steps.
+- 2026-01-14 20:46:10: step 9: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:11: Backoff triggered after 9 no-move steps.
+- 2026-01-14 20:46:12: step 10: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:13: Backoff triggered after 10 no-move steps.
+- 2026-01-14 20:46:14: step 11: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:15: Backoff triggered after 11 no-move steps.
+- 2026-01-14 20:46:16: step 12: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:17: Backoff triggered after 12 no-move steps.
+- 2026-01-14 20:46:18: step 13: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:19: Backoff triggered after 13 no-move steps.
+- 2026-01-14 20:46:20: step 14: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:21: Backoff triggered after 14 no-move steps.
+- 2026-01-14 20:46:23: step 15: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:24: Backoff triggered after 15 no-move steps.
+- 2026-01-14 20:46:25: step 16: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:26: Backoff triggered after 16 no-move steps.
+- 2026-01-14 20:46:27: step 17: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:28: Backoff triggered after 17 no-move steps.
+- 2026-01-14 20:46:29: step 18: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:30: Backoff triggered after 18 no-move steps.
+- 2026-01-14 20:46:32: step 19: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:33: Backoff triggered after 19 no-move steps.
+- 2026-01-14 20:46:34: step 20: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:35: Backoff triggered after 20 no-move steps.
+- 2026-01-14 20:46:36: step 21: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:37: Backoff triggered after 21 no-move steps.
+- 2026-01-14 20:46:38: step 22: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:39: Backoff triggered after 22 no-move steps.
+- 2026-01-14 20:46:40: step 23: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:41: Backoff triggered after 23 no-move steps.
+- 2026-01-14 20:46:42: step 24: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:43: Backoff triggered after 24 no-move steps.
+- 2026-01-14 20:46:45: step 25: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:46: Backoff triggered after 25 no-move steps.
+- 2026-01-14 20:46:47: step 26: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:48: Backoff triggered after 26 no-move steps.
+- 2026-01-14 20:46:49: step 27: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:50: Backoff triggered after 27 no-move steps.
+- 2026-01-14 20:46:51: step 28: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:51: Backoff triggered after 28 no-move steps.
+- 2026-01-14 20:46:53: step 29: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:53: Backoff triggered after 29 no-move steps.
+- 2026-01-14 20:46:55: step 30: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:55: Backoff triggered after 30 no-move steps.
+- 2026-01-14 20:46:57: step 31: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:57: Backoff triggered after 31 no-move steps.
+- 2026-01-14 20:46:58: step 32: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:46:59: Backoff triggered after 32 no-move steps.
+- 2026-01-14 20:47:00: step 33: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:47:01: Backoff triggered after 33 no-move steps.
+- 2026-01-14 20:47:02: step 34: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:47:03: Backoff triggered after 34 no-move steps.
+- 2026-01-14 20:47:04: step 35: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:47:05: Backoff triggered after 35 no-move steps.
+- 2026-01-14 20:47:06: step 36: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:47:07: Backoff triggered after 36 no-move steps.
+- 2026-01-14 20:47:08: step 37: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:47:09: Backoff triggered after 37 no-move steps.
+- 2026-01-14 20:47:10: step 38: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:47:10: Backoff triggered after 38 no-move steps.
+- 2026-01-14 20:47:12: step 39: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:47:12: Backoff triggered after 39 no-move steps.
+- 2026-01-14 20:47:13: step 40: map=0 pos=(0,0) battle=0
+- 2026-01-14 20:47:14: Backoff triggered after 40 no-move steps.
+- 2026-01-14 20:47:15: Agent loop complete.
+- 2026-01-14 20:47:36: Smoke test: emulator state read successfully.
+- 2026-01-14 20:51:33: Smoke test: emulator state read successfully.
+- 2026-01-14 20:51:58: Smoke test: emulator state read successfully.
+- 2026-01-14 20:54:22: Smoke test: emulator state read successfully.
+- 2026-01-14 21:56:30: Smoke test: emulator state read successfully.
+- 2026-01-14 21:56:37: Warning: initial focus failed.
+- 2026-01-14 21:56:37: Starting agent loop.
+- 2026-01-14 21:56:37: step 1: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:56:37: step 2: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:56:38: step 3: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:56:39: step 4: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:56:39: step 5: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:56:40: step 6: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:56:41: step 7: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:56:41: step 8: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:56:42: Backoff triggered after 8 no-move steps.
+- 2026-01-14 21:56:43: step 9: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:56:44: Backoff triggered after 9 no-move steps.
+- 2026-01-14 21:56:45: step 10: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:56:46: Backoff triggered after 10 no-move steps.
+- 2026-01-14 21:56:47: Agent loop complete.
+- 2026-01-14 21:57:30: Warning: initial focus failed.
+- 2026-01-14 21:57:30: Starting agent loop.
+- 2026-01-14 21:57:30: step 1: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:57:31: step 2: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:57:32: step 3: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:57:32: step 4: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:57:33: step 5: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:57:34: step 6: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:57:35: step 7: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:57:35: step 8: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:57:36: Backoff triggered after 8 no-move steps.
+- 2026-01-14 21:57:37: step 9: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:57:38: Backoff triggered after 9 no-move steps.
+- 2026-01-14 21:57:39: step 10: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:57:40: Backoff triggered after 10 no-move steps.
+- 2026-01-14 21:57:41: step 11: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:57:42: Backoff triggered after 11 no-move steps.
+- 2026-01-14 21:57:43: step 12: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:57:43: Backoff triggered after 12 no-move steps.
+- 2026-01-14 21:57:45: step 13: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:57:45: Backoff triggered after 13 no-move steps.
+- 2026-01-14 21:57:46: step 14: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:57:47: Backoff triggered after 14 no-move steps.
+- 2026-01-14 21:57:48: step 15: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:57:49: Backoff triggered after 15 no-move steps.
+- 2026-01-14 21:57:50: step 16: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:57:51: Backoff triggered after 16 no-move steps.
+- 2026-01-14 21:57:52: step 17: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:57:53: Backoff triggered after 17 no-move steps.
+- 2026-01-14 21:57:54: step 18: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:57:55: Backoff triggered after 18 no-move steps.
+- 2026-01-14 21:57:56: step 19: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:57:57: Backoff triggered after 19 no-move steps.
+- 2026-01-14 21:57:58: step 20: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:57:59: Backoff triggered after 20 no-move steps.
+- 2026-01-14 21:58:00: step 21: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:01: Backoff triggered after 21 no-move steps.
+- 2026-01-14 21:58:02: step 22: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:02: Backoff triggered after 22 no-move steps.
+- 2026-01-14 21:58:04: step 23: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:04: Backoff triggered after 23 no-move steps.
+- 2026-01-14 21:58:06: step 24: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:06: Backoff triggered after 24 no-move steps.
+- 2026-01-14 21:58:08: step 25: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:08: Backoff triggered after 25 no-move steps.
+- 2026-01-14 21:58:10: step 26: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:10: Backoff triggered after 26 no-move steps.
+- 2026-01-14 21:58:12: step 27: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:12: Backoff triggered after 27 no-move steps.
+- 2026-01-14 21:58:13: step 28: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:14: Backoff triggered after 28 no-move steps.
+- 2026-01-14 21:58:15: step 29: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:16: Backoff triggered after 29 no-move steps.
+- 2026-01-14 21:58:17: step 30: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:18: Backoff triggered after 30 no-move steps.
+- 2026-01-14 21:58:19: step 31: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:20: Backoff triggered after 31 no-move steps.
+- 2026-01-14 21:58:21: step 32: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:22: Backoff triggered after 32 no-move steps.
+- 2026-01-14 21:58:23: step 33: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:23: Backoff triggered after 33 no-move steps.
+- 2026-01-14 21:58:25: step 34: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:25: Backoff triggered after 34 no-move steps.
+- 2026-01-14 21:58:26: step 35: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:27: Backoff triggered after 35 no-move steps.
+- 2026-01-14 21:58:28: step 36: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:29: Backoff triggered after 36 no-move steps.
+- 2026-01-14 21:58:30: step 37: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:31: Backoff triggered after 37 no-move steps.
+- 2026-01-14 21:58:33: step 38: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:33: Backoff triggered after 38 no-move steps.
+- 2026-01-14 21:58:34: step 39: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:35: Backoff triggered after 39 no-move steps.
+- 2026-01-14 21:58:36: step 40: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:37: Backoff triggered after 40 no-move steps.
+- 2026-01-14 21:58:38: step 41: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:39: Backoff triggered after 41 no-move steps.
+- 2026-01-14 21:58:40: step 42: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:41: Backoff triggered after 42 no-move steps.
+- 2026-01-14 21:58:42: step 43: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:43: Backoff triggered after 43 no-move steps.
+- 2026-01-14 21:58:44: step 44: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:45: Backoff triggered after 44 no-move steps.
+- 2026-01-14 21:58:46: step 45: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:47: Backoff triggered after 45 no-move steps.
+- 2026-01-14 21:58:48: step 46: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:49: Backoff triggered after 46 no-move steps.
+- 2026-01-14 21:58:50: step 47: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:51: Backoff triggered after 47 no-move steps.
+- 2026-01-14 21:58:52: step 48: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:53: Backoff triggered after 48 no-move steps.
+- 2026-01-14 21:58:54: step 49: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:55: Backoff triggered after 49 no-move steps.
+- 2026-01-14 21:58:56: step 50: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:57: Backoff triggered after 50 no-move steps.
+- 2026-01-14 21:58:58: step 51: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:58:59: Backoff triggered after 51 no-move steps.
+- 2026-01-14 21:59:00: step 52: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:08: Warning: initial focus failed.
+- 2026-01-14 21:59:08: Starting agent loop.
+- 2026-01-14 21:59:08: step 1: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:08: step 2: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:09: step 3: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:09: step 4: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:10: step 5: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:11: step 6: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:11: step 7: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:12: step 8: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:13: Backoff triggered after 8 no-move steps.
+- 2026-01-14 21:59:14: step 9: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:15: Backoff triggered after 9 no-move steps.
+- 2026-01-14 21:59:16: step 10: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:17: Backoff triggered after 10 no-move steps.
+- 2026-01-14 21:59:18: step 11: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:19: Backoff triggered after 11 no-move steps.
+- 2026-01-14 21:59:20: step 12: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:21: Backoff triggered after 12 no-move steps.
+- 2026-01-14 21:59:22: step 13: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:22: Backoff triggered after 13 no-move steps.
+- 2026-01-14 21:59:24: step 14: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:24: Backoff triggered after 14 no-move steps.
+- 2026-01-14 21:59:26: step 15: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:26: Backoff triggered after 15 no-move steps.
+- 2026-01-14 21:59:28: step 16: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:28: Backoff triggered after 16 no-move steps.
+- 2026-01-14 21:59:29: step 17: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:30: Backoff triggered after 17 no-move steps.
+- 2026-01-14 21:59:31: step 18: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:32: Backoff triggered after 18 no-move steps.
+- 2026-01-14 21:59:33: step 19: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:34: Backoff triggered after 19 no-move steps.
+- 2026-01-14 21:59:35: step 20: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:36: Backoff triggered after 20 no-move steps.
+- 2026-01-14 21:59:37: step 21: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:38: Backoff triggered after 21 no-move steps.
+- 2026-01-14 21:59:39: step 22: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:39: Backoff triggered after 22 no-move steps.
+- 2026-01-14 21:59:42: Backoff triggered after 23 no-move steps.
+- 2026-01-14 21:59:43: step 24: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:43: Backoff triggered after 24 no-move steps.
+- 2026-01-14 21:59:45: step 25: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:45: Backoff triggered after 25 no-move steps.
+- 2026-01-14 21:59:47: step 26: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:47: Backoff triggered after 26 no-move steps.
+- 2026-01-14 21:59:48: step 27: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:49: Backoff triggered after 27 no-move steps.
+- 2026-01-14 21:59:50: step 28: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:51: Backoff triggered after 28 no-move steps.
+- 2026-01-14 21:59:52: step 29: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:53: Backoff triggered after 29 no-move steps.
+- 2026-01-14 21:59:54: step 30: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:55: Backoff triggered after 30 no-move steps.
+- 2026-01-14 21:59:56: step 31: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:57: Backoff triggered after 31 no-move steps.
+- 2026-01-14 21:59:58: step 32: map=0 pos=(0,0) battle=0
+- 2026-01-14 21:59:59: Backoff triggered after 32 no-move steps.
+- 2026-01-14 22:00:00: step 33: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:00:01: Backoff triggered after 33 no-move steps.
+- 2026-01-14 22:00:02: step 34: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:00:03: Backoff triggered after 34 no-move steps.
+- 2026-01-14 22:00:04: step 35: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:00:05: Backoff triggered after 35 no-move steps.
+- 2026-01-14 22:00:06: step 36: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:23: Warning: initial focus failed.
+- 2026-01-14 22:16:23: Starting agent loop.
+- 2026-01-14 22:16:23: step 1: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:23: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:23: step 2: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:23: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:24: step 3: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:24: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:24: step 4: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:24: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:25: step 5: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:25: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:26: step 6: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:26: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:26: step 7: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:26: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:27: step 8: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:27: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:27: step 9: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:27: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:28: step 10: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:28: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:28: step 11: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:28: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:29: step 12: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:29: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:29: step 13: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:29: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:30: step 14: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:30: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:30: step 15: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:30: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:31: step 16: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:31: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:31: step 17: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:31: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:32: step 18: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:32: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:32: step 19: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:32: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:33: step 20: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:33: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:33: step 21: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:33: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:34: step 22: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:34: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:34: step 23: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:34: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:35: step 24: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:35: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:35: step 25: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:35: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:36: step 26: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:36: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:36: step 27: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:36: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:37: step 28: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:37: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:37: step 29: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:37: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:38: step 30: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:38: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:38: step 31: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:38: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:39: step 32: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:39: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:39: step 33: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:39: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:40: step 34: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:40: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:40: step 35: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:40: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:41: step 36: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:41: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:41: step 37: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:41: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:42: step 38: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:42: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:42: step 39: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:42: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:43: step 40: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:43: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:43: step 41: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:43: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:44: step 42: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:44: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:45: step 43: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:45: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:45: step 44: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:45: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:46: step 45: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:46: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:46: step 46: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:46: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:47: step 47: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:47: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:47: step 48: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:47: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:48: step 49: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:48: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:48: step 50: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:48: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:49: step 51: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:49: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:49: step 52: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:49: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:50: step 53: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:50: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:50: step 54: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:50: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:51: step 55: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:51: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:51: step 56: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:51: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:52: step 57: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:52: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:52: step 58: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:52: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:53: step 59: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:53: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:53: step 60: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:53: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:54: step 61: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:54: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:54: step 62: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:54: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:55: step 63: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:55: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:55: step 64: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:55: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:56: step 65: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:56: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:56: step 66: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:56: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:57: step 67: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:57: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:57: step 68: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:57: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:58: step 69: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:58: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:58: step 70: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:58: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:59: step 71: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:59: State stale; skipping input to avoid desync.
+- 2026-01-14 22:16:59: step 72: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:16:59: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:00: step 73: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:00: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:00: step 74: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:00: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:01: step 75: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:01: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:01: step 76: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:01: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:02: step 77: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:02: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:03: step 78: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:03: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:03: step 79: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:03: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:04: step 80: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:04: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:04: step 81: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:04: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:05: step 82: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:05: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:05: step 83: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:05: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:06: step 84: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:06: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:06: step 85: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:06: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:07: step 86: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:07: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:07: step 87: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:07: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:08: step 88: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:08: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:08: step 89: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:08: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:09: step 90: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:09: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:09: step 91: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:09: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:10: step 92: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:10: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:10: step 93: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:10: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:11: step 94: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:11: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:11: step 95: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:11: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:12: step 96: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:12: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:12: step 97: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:12: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:13: step 98: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:13: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:13: step 99: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:13: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:14: step 100: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:14: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:14: step 101: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:14: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:15: step 102: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:15: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:15: step 103: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:15: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:16: step 104: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:16: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:16: step 105: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:16: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:17: step 106: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:17: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:17: step 107: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:17: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:18: step 108: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:18: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:18: step 109: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:18: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:19: step 110: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:19: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:20: step 111: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:20: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:20: step 112: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:20: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:21: step 113: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:21: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:21: step 114: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:21: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:22: step 115: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:22: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:22: step 116: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:22: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:23: step 117: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:23: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:23: step 118: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:23: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:24: step 119: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:24: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:24: step 120: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:24: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:25: step 121: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:25: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:25: step 122: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:25: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:26: step 123: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:26: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:26: step 124: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:26: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:27: step 125: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:27: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:27: step 126: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:27: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:28: step 127: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:28: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:28: step 128: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:28: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:29: step 129: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:29: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:29: step 130: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:29: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:30: step 131: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:30: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:30: step 132: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:30: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:31: step 133: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:31: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:31: step 134: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:31: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:32: step 135: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:32: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:32: step 136: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:32: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:33: step 137: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:33: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:33: step 138: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:33: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:34: step 139: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:34: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:34: step 140: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:34: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:35: step 141: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:35: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:35: step 142: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:35: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:36: step 143: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:36: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:36: step 144: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:36: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:37: step 145: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:37: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:38: step 146: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:38: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:38: step 147: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:38: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:39: step 148: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:39: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:39: step 149: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:39: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:40: step 150: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:40: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:40: step 151: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:40: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:41: step 152: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:41: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:41: step 153: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:41: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:42: step 154: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:42: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:42: step 155: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:42: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:43: step 156: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:43: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:43: step 157: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:43: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:44: step 158: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:44: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:44: step 159: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:44: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:45: step 160: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:45: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:45: step 161: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:45: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:46: step 162: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:46: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:46: step 163: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:46: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:47: step 164: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:47: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:47: step 165: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:47: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:48: step 166: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:48: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:48: step 167: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:48: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:49: step 168: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:49: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:49: step 169: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:49: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:50: step 170: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:50: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:50: step 171: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:50: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:51: step 172: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:51: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:51: step 173: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:51: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:52: step 174: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:52: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:52: step 175: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:52: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:53: step 176: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:53: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:53: step 177: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:53: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:54: step 178: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:54: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:54: step 179: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:54: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:55: step 180: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:55: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:56: step 181: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:56: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:56: step 182: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:56: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:57: step 183: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:57: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:57: step 184: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:57: State stale; skipping input to avoid desync.
+- 2026-01-14 22:17:58: step 185: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:17:58: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:18: Starting agent loop.
+- 2026-01-14 22:18:18: step 1: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:18: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:19: step 2: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:19: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:19: step 3: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:19: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:20: step 4: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:20: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:20: step 5: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:20: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:21: step 6: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:21: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:21: step 7: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:21: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:22: step 8: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:22: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:22: step 9: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:22: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:23: step 10: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:23: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:23: step 11: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:23: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:24: step 12: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:24: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:24: step 13: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:24: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:25: step 14: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:25: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:25: step 15: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:25: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:26: step 16: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:26: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:26: step 17: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:26: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:27: step 18: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:27: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:27: step 19: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:27: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:28: step 20: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:28: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:28: step 21: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:28: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:29: step 22: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:29: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:29: step 23: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:29: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:30: step 24: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:30: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:30: step 25: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:30: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:31: step 26: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:31: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:31: step 27: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:31: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:32: step 28: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:32: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:33: step 29: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:33: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:33: step 30: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:33: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:34: step 31: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:34: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:34: step 32: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:34: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:35: step 33: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:35: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:35: step 34: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:35: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:36: step 35: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:36: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:36: step 36: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:36: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:37: step 37: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:37: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:37: step 38: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:37: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:38: step 39: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:38: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:38: step 40: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:38: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:39: step 41: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:39: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:39: step 42: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:39: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:40: step 43: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:40: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:40: step 44: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:40: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:41: step 45: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:41: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:41: step 46: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:41: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:42: step 47: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:42: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:42: step 48: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:42: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:43: step 49: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:43: State stale; skipping input to avoid desync.
+- 2026-01-14 22:18:43: step 50: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:18:43: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:36: Warning: initial focus failed.
+- 2026-01-14 22:19:36: Starting agent loop.
+- 2026-01-14 22:19:36: step 1: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:36: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:37: step 2: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:37: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:37: step 3: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:37: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:38: step 4: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:38: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:38: step 5: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:38: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:39: step 6: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:39: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:39: step 7: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:39: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:40: step 8: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:40: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:40: step 9: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:40: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:41: step 10: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:41: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:41: step 11: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:41: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:42: step 12: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:42: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:42: step 13: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:42: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:43: step 14: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:43: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:44: step 15: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:44: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:44: step 16: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:44: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:45: step 17: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:45: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:45: step 18: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:45: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:46: step 19: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:46: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:46: step 20: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:46: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:47: step 21: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:47: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:47: step 22: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:47: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:48: step 23: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:48: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:48: step 24: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:48: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:49: step 25: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:49: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:49: step 26: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:49: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:50: step 27: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:50: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:50: step 28: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:50: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:51: step 29: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:51: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:51: step 30: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:51: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:52: step 31: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:52: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:52: step 32: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:52: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:53: step 33: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:53: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:53: step 34: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:53: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:54: step 35: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:54: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:54: step 36: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:54: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:55: step 37: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:55: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:55: step 38: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:55: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:56: step 39: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:56: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:56: step 40: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:56: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:57: step 41: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:57: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:57: step 42: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:57: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:58: step 43: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:58: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:58: step 44: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:58: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:59: step 45: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:59: State stale; skipping input to avoid desync.
+- 2026-01-14 22:19:59: step 46: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:19:59: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:00: step 47: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:00: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:00: step 48: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:00: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:01: step 49: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:01: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:01: step 50: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:01: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:02: step 51: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:02: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:02: step 52: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:02: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:03: step 53: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:03: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:04: step 54: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:04: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:04: step 55: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:04: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:05: step 56: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:05: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:05: step 57: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:05: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:06: step 58: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:06: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:06: step 59: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:06: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:07: step 60: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:07: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:07: step 61: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:07: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:08: step 62: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:08: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:08: step 63: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:08: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:09: step 64: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:09: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:09: step 65: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:09: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:10: step 66: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:10: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:10: step 67: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:10: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:11: step 68: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:11: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:11: step 69: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:11: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:12: step 70: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:12: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:12: step 71: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:12: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:13: step 72: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:13: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:13: step 73: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:13: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:14: step 74: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:14: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:14: step 75: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:14: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:15: step 76: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:15: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:15: step 77: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:15: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:16: step 78: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:16: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:16: step 79: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:16: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:17: step 80: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:17: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:17: step 81: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:17: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:18: step 82: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:18: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:18: step 83: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:18: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:19: step 84: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:19: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:19: step 85: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:19: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:20: step 86: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:20: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:20: step 87: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:20: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:21: step 88: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:21: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:22: step 89: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:22: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:22: step 90: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:22: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:23: step 91: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:23: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:23: step 92: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:23: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:24: step 93: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:24: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:24: step 94: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:24: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:25: step 95: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:25: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:25: step 96: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:25: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:26: step 97: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:26: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:26: step 98: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:26: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:27: step 99: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:27: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:27: step 100: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:27: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:28: step 101: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:28: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:28: step 102: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:28: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:29: step 103: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:29: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:29: step 104: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:29: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:30: step 105: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:30: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:30: step 106: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:30: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:31: step 107: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:31: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:31: step 108: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:31: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:32: step 109: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:32: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:32: step 110: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:32: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:33: step 111: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:33: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:33: step 112: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:33: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:34: step 113: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:34: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:34: step 114: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:34: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:35: step 115: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:35: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:35: step 116: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:35: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:36: step 117: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:36: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:36: step 118: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:36: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:37: step 119: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:37: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:37: step 120: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:37: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:38: step 121: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:38: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:38: step 122: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:38: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:39: step 123: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:39: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:40: step 124: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:40: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:40: step 125: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:40: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:41: step 126: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:41: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:41: step 127: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:41: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:42: step 128: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:42: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:42: step 129: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:42: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:43: step 130: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:43: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:43: step 131: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:43: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:44: step 132: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:44: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:44: step 133: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:44: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:45: step 134: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:45: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:45: step 135: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:45: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:46: step 136: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:46: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:46: step 137: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:46: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:47: step 138: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:47: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:47: step 139: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:47: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:48: step 140: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:48: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:48: step 141: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:48: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:49: step 142: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:49: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:49: step 143: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:49: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:50: step 144: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:50: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:50: step 145: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:50: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:51: step 146: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:51: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:51: step 147: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:51: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:52: step 148: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:52: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:52: step 149: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:52: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:53: step 150: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:53: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:53: step 151: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:53: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:54: step 152: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:54: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:54: step 153: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:54: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:55: step 154: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:55: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:55: step 155: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:55: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:56: step 156: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:56: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:56: step 157: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:56: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:57: step 158: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:57: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:58: step 159: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:58: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:58: step 160: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:58: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:59: step 161: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:59: State stale; skipping input to avoid desync.
+- 2026-01-14 22:20:59: step 162: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:20:59: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:00: step 163: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:00: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:00: step 164: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:00: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:01: step 165: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:01: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:01: step 166: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:01: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:02: step 167: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:02: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:02: step 168: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:02: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:03: step 169: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:03: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:03: step 170: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:03: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:04: step 171: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:04: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:04: step 172: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:04: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:05: step 173: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:05: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:05: step 174: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:05: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:06: step 175: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:06: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:06: step 176: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:06: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:07: step 177: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:07: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:07: step 178: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:07: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:08: step 179: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:08: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:08: step 180: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:08: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:09: step 181: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:09: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:09: step 182: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:09: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:10: step 183: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:10: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:10: step 184: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:10: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:11: step 185: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:11: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:11: step 186: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:11: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:12: step 187: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:12: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:12: step 188: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:12: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:13: step 189: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:13: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:13: step 190: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:13: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:14: step 191: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:14: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:14: step 192: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:14: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:15: step 193: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:15: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:16: step 194: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:16: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:16: step 195: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:16: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:17: step 196: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:17: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:17: step 197: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:17: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:18: step 198: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:18: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:18: step 199: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:18: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:19: step 200: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:21:19: State stale; skipping input to avoid desync.
+- 2026-01-14 22:21:19: Agent loop complete.
+- 2026-01-14 22:22:33: Starting agent loop.
+- 2026-01-14 22:22:33: step 1: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:33: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:33: step 2: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:33: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:34: step 3: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:34: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:34: step 4: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:34: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:35: step 5: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:35: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:35: step 6: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:35: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:36: step 7: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:36: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:36: step 8: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:36: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:37: step 9: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:37: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:37: step 10: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:37: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:38: step 11: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:38: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:38: step 12: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:38: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:39: step 13: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:39: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:39: step 14: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:39: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:40: step 15: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:40: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:40: step 16: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:40: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:41: step 17: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:41: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:41: step 18: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:41: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:42: step 19: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:42: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:42: step 20: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:42: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:43: step 21: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:43: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:43: step 22: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:43: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:44: step 23: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:44: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:44: step 24: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:44: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:45: step 25: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:45: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:45: step 26: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:45: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:46: step 27: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:46: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:46: step 28: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:46: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:47: step 29: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:47: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:48: step 30: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:48: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:48: step 31: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:48: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:49: step 32: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:49: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:49: step 33: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:49: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:50: step 34: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:50: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:50: step 35: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:50: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:51: step 36: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:51: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:51: step 37: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:51: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:52: step 38: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:52: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:52: step 39: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:52: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:53: step 40: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:53: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:53: step 41: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:53: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:54: step 42: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:54: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:54: step 43: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:54: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:55: step 44: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:55: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:55: step 45: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:55: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:56: step 46: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:56: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:56: step 47: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:56: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:57: step 48: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:57: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:57: step 49: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:57: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:58: step 50: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:58: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:58: step 51: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:58: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:59: step 52: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:59: State stale; skipping input to avoid desync.
+- 2026-01-14 22:22:59: step 53: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:22:59: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:00: step 54: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:00: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:00: step 55: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:00: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:01: step 56: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:01: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:01: step 57: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:01: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:02: step 58: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:02: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:02: step 59: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:02: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:03: step 60: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:03: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:03: step 61: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:03: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:04: step 62: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:04: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:04: step 63: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:04: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:05: step 64: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:05: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:06: step 65: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:06: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:06: step 66: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:06: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:07: step 67: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:07: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:07: step 68: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:07: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:08: step 69: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:08: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:08: step 70: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:08: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:09: step 71: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:09: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:09: step 72: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:09: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:10: step 73: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:10: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:10: step 74: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:10: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:11: step 75: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:11: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:11: step 76: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:11: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:12: step 77: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:12: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:12: step 78: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:12: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:13: step 79: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:13: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:13: step 80: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:13: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:14: step 81: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:14: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:14: step 82: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:14: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:15: step 83: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:15: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:15: step 84: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:15: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:16: step 85: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:16: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:16: step 86: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:16: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:17: step 87: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:17: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:17: step 88: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:17: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:18: step 89: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:18: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:18: step 90: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:18: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:19: step 91: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:19: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:19: step 92: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:19: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:20: step 93: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:20: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:20: step 94: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:20: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:21: step 95: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:21: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:21: step 96: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:21: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:22: step 97: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:22: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:22: step 98: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:22: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:23: step 99: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:23: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:24: step 100: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:24: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:24: step 101: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:24: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:25: step 102: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:25: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:25: step 103: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:25: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:26: step 104: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:26: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:26: step 105: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:26: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:27: step 106: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:27: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:27: step 107: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:27: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:28: step 108: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:28: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:28: step 109: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:28: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:29: step 110: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:29: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:29: step 111: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:29: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:30: step 112: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:30: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:30: step 113: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:30: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:31: step 114: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:31: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:31: step 115: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:31: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:32: step 116: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:32: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:32: step 117: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:32: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:33: step 118: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:33: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:33: step 119: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:33: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:34: step 120: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:34: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:34: step 121: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:34: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:35: step 122: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:35: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:35: step 123: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:35: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:36: step 124: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:36: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:36: step 125: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:36: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:37: step 126: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:37: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:37: step 127: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:37: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:38: step 128: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:38: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:38: step 129: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:38: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:39: step 130: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:39: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:39: step 131: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:39: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:40: step 132: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:40: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:40: step 133: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:40: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:41: step 134: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:41: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:41: step 135: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:41: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:42: step 136: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:42: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:43: step 137: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:43: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:43: step 138: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:43: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:44: step 139: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:44: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:44: step 140: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:44: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:45: step 141: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:45: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:45: step 142: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:45: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:46: step 143: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:46: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:46: step 144: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:46: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:47: step 145: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:47: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:47: step 146: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:47: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:48: step 147: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:48: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:48: step 148: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:48: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:49: step 149: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:49: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:49: step 150: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:49: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:50: step 151: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:50: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:50: step 152: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:50: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:51: step 153: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:51: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:51: step 154: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:51: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:52: step 155: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:52: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:52: step 156: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:52: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:53: step 157: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:53: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:53: step 158: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:53: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:54: step 159: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:54: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:54: step 160: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:54: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:55: step 161: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:55: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:55: step 162: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:55: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:56: step 163: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:56: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:56: step 164: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:56: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:57: step 165: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:57: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:57: step 166: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:57: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:58: step 167: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:58: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:58: step 168: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:58: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:59: step 169: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:59: State stale; skipping input to avoid desync.
+- 2026-01-14 22:23:59: step 170: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:23:59: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:00: step 171: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:00: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:01: step 172: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:01: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:01: step 173: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:01: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:02: step 174: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:02: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:02: step 175: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:02: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:03: step 176: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:03: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:03: step 177: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:03: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:04: step 178: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:04: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:04: step 179: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:04: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:05: step 180: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:05: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:05: step 181: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:05: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:06: step 182: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:06: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:06: step 183: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:06: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:07: step 184: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:07: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:07: step 185: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:07: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:08: step 186: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:08: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:08: step 187: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:08: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:09: step 188: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:09: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:09: step 189: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:09: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:10: step 190: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:10: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:10: step 191: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:10: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:11: step 192: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:11: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:11: step 193: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:11: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:12: step 194: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:12: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:12: step 195: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:12: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:13: step 196: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:13: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:13: step 197: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:13: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:14: step 198: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:14: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:14: step 199: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:14: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:15: step 200: map=0 pos=(0,0) battle=0
+- 2026-01-14 22:24:15: State stale; skipping input to avoid desync.
+- 2026-01-14 22:24:15: Agent loop complete.
+- 2026-01-15 08:29:54: Warning: initial focus failed.
+- 2026-01-15 08:29:54: Starting agent loop.
+- 2026-01-15 08:29:54: step 1: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:29:54: State stale; skipping input to avoid desync.
+- 2026-01-15 08:29:54: step 2: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:29:54: State stale; skipping input to avoid desync.
+- 2026-01-15 08:29:55: step 3: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:29:55: State stale; skipping input to avoid desync.
+- 2026-01-15 08:29:55: step 4: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:29:55: State stale; skipping input to avoid desync.
+- 2026-01-15 08:29:56: step 5: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:29:56: State stale; skipping input to avoid desync.
+- 2026-01-15 08:29:56: step 6: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:29:56: State stale; skipping input to avoid desync.
+- 2026-01-15 08:29:57: step 7: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:29:57: State stale; skipping input to avoid desync.
+- 2026-01-15 08:29:57: step 8: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:29:57: State stale; skipping input to avoid desync.
+- 2026-01-15 08:29:58: step 9: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:29:58: State stale; skipping input to avoid desync.
+- 2026-01-15 08:29:58: step 10: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:29:58: State stale; skipping input to avoid desync.
+- 2026-01-15 08:29:59: step 11: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:29:59: State stale; skipping input to avoid desync.
+- 2026-01-15 08:29:59: step 12: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:29:59: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:00: step 13: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:00: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:01: step 14: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:01: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:01: step 15: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:01: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:02: step 16: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:02: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:02: step 17: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:02: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:03: step 18: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:03: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:03: step 19: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:03: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:04: step 20: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:04: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:04: step 21: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:04: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:05: step 22: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:05: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:05: step 23: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:05: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:06: step 24: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:06: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:06: step 25: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:06: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:07: step 26: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:07: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:07: step 27: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:07: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:08: step 28: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:08: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:08: step 29: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:08: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:09: step 30: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:09: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:09: step 31: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:09: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:10: step 32: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:10: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:10: step 33: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:10: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:11: step 34: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:11: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:11: step 35: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:11: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:12: step 36: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:12: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:12: step 37: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:12: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:13: step 38: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:13: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:13: step 39: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:13: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:14: step 40: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:14: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:14: step 41: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:14: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:15: step 42: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:15: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:15: step 43: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:15: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:16: step 44: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:16: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:16: step 45: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:16: State stale; skipping input to avoid desync.
+- 2026-01-15 08:30:17: step 46: map=0 pos=(0,0) battle=0
+- 2026-01-15 08:30:17: State stale; skipping input to avoid desync.
+- 2026-01-15 09:46:49: Warning: initial focus failed.
+- 2026-01-15 09:46:49: Starting agent loop.
+- 2026-01-15 09:46:49: step 1: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:46:49: State stale; skipping input to avoid desync.
+- 2026-01-15 09:46:49: step 2: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:46:49: State stale; skipping input to avoid desync.
+- 2026-01-15 09:46:50: step 3: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:46:50: State stale; skipping input to avoid desync.
+- 2026-01-15 09:46:50: step 4: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:46:50: State stale; skipping input to avoid desync.
+- 2026-01-15 09:46:51: step 5: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:46:51: State stale; skipping input to avoid desync.
+- 2026-01-15 09:46:51: step 6: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:46:51: State stale; skipping input to avoid desync.
+- 2026-01-15 09:46:52: step 7: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:46:52: State stale; skipping input to avoid desync.
+- 2026-01-15 09:46:52: step 8: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:46:52: State stale; skipping input to avoid desync.
+- 2026-01-15 09:46:53: step 9: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:46:53: State stale; skipping input to avoid desync.
+- 2026-01-15 09:46:53: step 10: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:46:53: State stale; skipping input to avoid desync.
+- 2026-01-15 09:46:54: step 11: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:46:54: State stale; skipping input to avoid desync.
+- 2026-01-15 09:46:54: step 12: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:46:54: State stale; skipping input to avoid desync.
+- 2026-01-15 09:46:55: step 13: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:46:55: State stale; skipping input to avoid desync.
+- 2026-01-15 09:46:55: step 14: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:46:55: State stale; skipping input to avoid desync.
+- 2026-01-15 09:46:56: step 15: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:46:56: State stale; skipping input to avoid desync.
+- 2026-01-15 09:46:56: step 16: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:46:56: State stale; skipping input to avoid desync.
+- 2026-01-15 09:46:57: step 17: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:46:57: State stale; skipping input to avoid desync.
+- 2026-01-15 09:46:57: step 18: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:46:57: State stale; skipping input to avoid desync.
+- 2026-01-15 09:46:58: step 19: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:46:58: State stale; skipping input to avoid desync.
+- 2026-01-15 09:46:58: step 20: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:46:58: State stale; skipping input to avoid desync.
+- 2026-01-15 09:46:59: step 21: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:46:59: State stale; skipping input to avoid desync.
+- 2026-01-15 09:46:59: step 22: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:46:59: State stale; skipping input to avoid desync.
+- 2026-01-15 09:47:00: step 23: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:47:00: State stale; skipping input to avoid desync.
+- 2026-01-15 09:47:00: step 24: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:47:00: State stale; skipping input to avoid desync.
+- 2026-01-15 09:47:01: step 25: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:47:01: State stale; skipping input to avoid desync.
+- 2026-01-15 09:47:01: step 26: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:47:01: State stale; skipping input to avoid desync.
+- 2026-01-15 09:47:02: step 27: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:47:02: State stale; skipping input to avoid desync.
+- 2026-01-15 09:47:02: step 28: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:47:02: State stale; skipping input to avoid desync.
+- 2026-01-15 09:47:03: step 29: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:47:03: State stale; skipping input to avoid desync.
+- 2026-01-15 09:47:03: step 30: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:47:03: State stale; skipping input to avoid desync.
+- 2026-01-15 09:47:04: step 31: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:47:04: State stale; skipping input to avoid desync.
+- 2026-01-15 09:47:04: step 32: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:47:04: State stale; skipping input to avoid desync.
+- 2026-01-15 09:47:05: step 33: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:47:05: State stale; skipping input to avoid desync.
+- 2026-01-15 09:47:05: step 34: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:47:05: State stale; skipping input to avoid desync.
+- 2026-01-15 09:47:06: step 35: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:47:06: State stale; skipping input to avoid desync.
+- 2026-01-15 09:47:06: step 36: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:47:06: State stale; skipping input to avoid desync.
+- 2026-01-15 09:47:07: step 37: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:47:07: State stale; skipping input to avoid desync.
+- 2026-01-15 09:47:07: step 38: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:47:07: State stale; skipping input to avoid desync.
+- 2026-01-15 09:47:08: step 39: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:47:08: State stale; skipping input to avoid desync.
+- 2026-01-15 09:47:08: step 40: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:47:08: State stale; skipping input to avoid desync.
+- 2026-01-15 09:47:09: step 41: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:47:09: State stale; skipping input to avoid desync.
+- 2026-01-15 09:47:09: step 42: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:47:09: State stale; skipping input to avoid desync.
+- 2026-01-15 09:47:10: step 43: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:47:10: State stale; skipping input to avoid desync.
+- 2026-01-15 09:47:10: step 44: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:47:10: State stale; skipping input to avoid desync.
+- 2026-01-15 09:47:11: step 45: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:47:11: State stale; skipping input to avoid desync.
+- 2026-01-15 09:47:11: step 46: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:47:11: State stale; skipping input to avoid desync.
+- 2026-01-15 09:47:12: step 47: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:47:12: State stale; skipping input to avoid desync.
+- 2026-01-15 09:47:12: step 48: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:47:12: State stale; skipping input to avoid desync.
+- 2026-01-15 09:47:13: step 49: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:47:13: State stale; skipping input to avoid desync.
+- 2026-01-15 09:47:13: step 50: map=0 pos=(0,0) battle=0
+- 2026-01-15 09:47:13: State stale; skipping input to avoid desync.
+- 2026-01-15 09:47:14: Agent loop complete.
+- 2026-01-15 09:48:17: Smoke test: emulator state read successfully.
+- 2026-01-15 09:50:00: Smoke test: emulator state read successfully.
+- 2026-01-15 09:51:47: Warning: initial focus failed.
+- 2026-01-15 09:51:47: Starting agent loop.
+- 2026-01-15 09:51:47: step 1: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:51:47: State stale; skipping input to avoid desync.
+- 2026-01-15 09:51:48: step 2: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:51:48: State stale; skipping input to avoid desync.
+- 2026-01-15 09:51:48: step 3: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:51:48: State stale; skipping input to avoid desync.
+- 2026-01-15 09:51:49: step 4: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:51:49: State stale; skipping input to avoid desync.
+- 2026-01-15 09:51:49: step 5: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:51:49: State stale; skipping input to avoid desync.
+- 2026-01-15 09:51:50: step 6: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:51:50: State stale; skipping input to avoid desync.
+- 2026-01-15 09:51:50: step 7: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:51:50: State stale; skipping input to avoid desync.
+- 2026-01-15 09:51:51: step 8: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:51:51: State stale; skipping input to avoid desync.
+- 2026-01-15 09:51:51: step 9: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:51:51: State stale; skipping input to avoid desync.
+- 2026-01-15 09:51:52: step 10: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:51:52: State stale; skipping input to avoid desync.
+- 2026-01-15 09:51:52: step 11: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:51:52: State stale; skipping input to avoid desync.
+- 2026-01-15 09:51:53: step 12: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:51:53: State stale; skipping input to avoid desync.
+- 2026-01-15 09:51:53: step 13: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:51:53: State stale; skipping input to avoid desync.
+- 2026-01-15 09:51:54: step 14: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:51:54: State stale; skipping input to avoid desync.
+- 2026-01-15 09:51:54: step 15: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:51:54: State stale; skipping input to avoid desync.
+- 2026-01-15 09:51:55: step 16: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:51:55: State stale; skipping input to avoid desync.
+- 2026-01-15 09:51:55: step 17: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:51:55: State stale; skipping input to avoid desync.
+- 2026-01-15 09:51:56: step 18: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:51:56: State stale; skipping input to avoid desync.
+- 2026-01-15 09:51:56: step 19: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:51:56: State stale; skipping input to avoid desync.
+- 2026-01-15 09:51:57: step 20: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:51:57: State stale; skipping input to avoid desync.
+- 2026-01-15 09:51:57: step 21: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:51:57: State stale; skipping input to avoid desync.
+- 2026-01-15 09:51:58: step 22: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:51:58: State stale; skipping input to avoid desync.
+- 2026-01-15 09:51:58: step 23: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:51:58: State stale; skipping input to avoid desync.
+- 2026-01-15 09:51:59: step 24: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:51:59: State stale; skipping input to avoid desync.
+- 2026-01-15 09:51:59: step 25: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:51:59: State stale; skipping input to avoid desync.
+- 2026-01-15 09:52:00: step 26: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:52:00: State stale; skipping input to avoid desync.
+- 2026-01-15 09:52:00: step 27: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:52:00: State stale; skipping input to avoid desync.
+- 2026-01-15 09:52:01: step 28: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:52:01: State stale; skipping input to avoid desync.
+- 2026-01-15 09:52:01: step 29: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:52:01: State stale; skipping input to avoid desync.
+- 2026-01-15 09:52:02: step 30: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:52:02: State stale; skipping input to avoid desync.
+- 2026-01-15 09:52:02: step 31: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:52:02: State stale; skipping input to avoid desync.
+- 2026-01-15 09:52:03: step 32: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:52:03: State stale; skipping input to avoid desync.
+- 2026-01-15 09:52:03: step 33: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:52:03: State stale; skipping input to avoid desync.
+- 2026-01-15 09:52:04: step 34: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:52:04: State stale; skipping input to avoid desync.
+- 2026-01-15 09:52:04: step 35: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:52:04: State stale; skipping input to avoid desync.
+- 2026-01-15 09:52:05: step 36: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:52:05: State stale; skipping input to avoid desync.
+- 2026-01-15 09:52:05: step 37: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:52:05: State stale; skipping input to avoid desync.
+- 2026-01-15 09:52:06: step 38: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:52:06: State stale; skipping input to avoid desync.
+- 2026-01-15 09:52:06: step 39: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:52:06: State stale; skipping input to avoid desync.
+- 2026-01-15 09:52:07: step 40: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:52:07: State stale; skipping input to avoid desync.
+- 2026-01-15 09:52:07: step 41: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:52:07: State stale; skipping input to avoid desync.
+- 2026-01-15 09:52:08: step 42: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:52:08: State stale; skipping input to avoid desync.
+- 2026-01-15 09:52:08: step 43: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:52:08: State stale; skipping input to avoid desync.
+- 2026-01-15 09:52:09: step 44: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:52:09: State stale; skipping input to avoid desync.
+- 2026-01-15 09:52:09: step 45: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:52:09: State stale; skipping input to avoid desync.
+- 2026-01-15 09:52:10: step 46: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:52:10: State stale; skipping input to avoid desync.
+- 2026-01-15 09:52:10: step 47: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:52:10: State stale; skipping input to avoid desync.
+- 2026-01-15 09:52:11: step 48: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:52:11: State stale; skipping input to avoid desync.
+- 2026-01-15 09:52:11: step 49: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:52:11: State stale; skipping input to avoid desync.
+- 2026-01-15 09:52:12: step 50: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:52:12: State stale; skipping input to avoid desync.
+- 2026-01-15 09:52:12: Agent loop complete.
+- 2026-01-15 09:54:06: Smoke test: emulator state read successfully.
+- 2026-01-15 09:56:59: Warning: initial focus failed.
+- 2026-01-15 09:56:59: Starting agent loop.
+- 2026-01-15 09:56:59: step 1: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:56:59: State stale; skipping input to avoid desync.
+- 2026-01-15 09:56:59: step 2: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:56:59: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:00: step 3: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:00: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:00: step 4: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:00: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:01: step 5: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:01: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:01: step 6: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:01: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:02: step 7: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:02: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:02: step 8: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:02: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:03: step 9: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:03: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:03: step 10: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:03: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:04: step 11: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:04: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:04: step 12: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:04: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:05: step 13: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:05: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:05: step 14: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:05: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:06: step 15: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:06: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:06: step 16: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:06: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:07: step 17: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:07: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:07: step 18: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:07: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:08: step 19: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:08: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:08: step 20: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:08: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:09: step 21: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:09: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:09: step 22: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:09: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:10: step 23: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:10: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:10: step 24: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:10: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:11: step 25: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:11: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:11: step 26: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:11: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:12: step 27: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:12: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:13: step 28: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:13: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:13: step 29: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:13: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:14: step 30: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:14: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:14: step 31: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:14: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:15: step 32: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:15: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:15: step 33: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:15: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:16: step 34: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:16: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:16: step 35: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:16: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:17: step 36: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:17: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:17: step 37: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:17: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:18: step 38: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:18: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:18: step 39: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:18: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:19: step 40: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:19: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:19: step 41: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:19: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:20: step 42: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:20: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:20: step 43: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:20: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:21: step 44: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:21: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:21: step 45: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:21: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:22: step 46: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:22: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:22: step 47: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:22: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:23: step 48: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:23: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:23: step 49: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:23: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:24: step 50: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:57:24: State stale; skipping input to avoid desync.
+- 2026-01-15 09:57:24: Agent loop complete.
+- 2026-01-15 09:58:18: Starting agent loop.
+- 2026-01-15 09:58:18: step 1: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:58:18: step 2: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:58:19: step 3: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:58:19: step 4: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:58:20: step 5: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:58:21: step 6: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:58:22: step 7: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:58:22: step 8: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:58:23: Backoff triggered after 8 no-move steps.
+- 2026-01-15 09:58:24: step 9: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:58:25: Backoff triggered after 9 no-move steps.
+- 2026-01-15 09:58:26: step 10: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:58:27: Backoff triggered after 10 no-move steps.
+- 2026-01-15 09:58:28: step 11: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:58:29: Backoff triggered after 11 no-move steps.
+- 2026-01-15 09:58:30: step 12: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:58:31: Backoff triggered after 12 no-move steps.
+- 2026-01-15 09:58:32: step 13: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:58:33: Backoff triggered after 13 no-move steps.
+- 2026-01-15 09:58:34: step 14: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:58:34: Backoff triggered after 14 no-move steps.
+- 2026-01-15 09:58:36: step 15: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:58:36: Backoff triggered after 15 no-move steps.
+- 2026-01-15 09:58:38: step 16: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:58:38: Backoff triggered after 16 no-move steps.
+- 2026-01-15 09:58:40: step 17: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:58:40: State stale; skipping input to avoid desync.
+- 2026-01-15 09:58:40: step 18: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:58:40: State stale; skipping input to avoid desync.
+- 2026-01-15 09:58:41: step 19: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:58:41: Backoff triggered after 17 no-move steps.
+- 2026-01-15 09:58:42: step 20: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:58:43: Backoff triggered after 18 no-move steps.
+- 2026-01-15 09:58:44: step 21: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:58:45: Backoff triggered after 19 no-move steps.
+- 2026-01-15 09:58:46: step 22: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:58:47: Backoff triggered after 20 no-move steps.
+- 2026-01-15 09:58:48: step 23: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:58:49: Backoff triggered after 21 no-move steps.
+- 2026-01-15 09:58:50: step 24: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:58:50: Backoff triggered after 22 no-move steps.
+- 2026-01-15 09:58:52: step 25: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:58:52: Backoff triggered after 23 no-move steps.
+- 2026-01-15 09:58:54: step 26: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:58:54: Backoff triggered after 24 no-move steps.
+- 2026-01-15 09:58:56: step 27: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:58:56: Backoff triggered after 25 no-move steps.
+- 2026-01-15 09:58:57: step 28: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:58:58: Backoff triggered after 26 no-move steps.
+- 2026-01-15 09:58:59: step 29: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:59:00: Backoff triggered after 27 no-move steps.
+- 2026-01-15 09:59:01: step 30: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:59:02: Backoff triggered after 28 no-move steps.
+- 2026-01-15 09:59:03: step 31: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:59:04: Backoff triggered after 29 no-move steps.
+- 2026-01-15 09:59:05: step 32: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:59:05: Backoff triggered after 30 no-move steps.
+- 2026-01-15 09:59:06: step 33: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:59:07: Backoff triggered after 31 no-move steps.
+- 2026-01-15 09:59:08: step 34: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:59:09: Backoff triggered after 32 no-move steps.
+- 2026-01-15 09:59:10: step 35: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:59:11: Backoff triggered after 33 no-move steps.
+- 2026-01-15 09:59:12: step 36: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:59:13: Backoff triggered after 34 no-move steps.
+- 2026-01-15 09:59:14: step 37: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:59:15: Backoff triggered after 35 no-move steps.
+- 2026-01-15 09:59:16: step 38: map=18 pos=(0,3) battle=0
+- 2026-01-15 09:59:16: Backoff triggered after 36 no-move steps.
+- 2026-01-15 09:59:18: step 39: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:00:16: Warning: initial focus failed.
+- 2026-01-15 10:00:16: Starting agent loop.
+- 2026-01-15 10:00:16: step 1: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:00:16: step 2: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:00:17: step 3: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:00:17: step 4: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:00:18: step 5: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:00:19: step 6: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:00:20: step 7: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:00:20: step 8: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:00:21: Backoff triggered after 8 no-move steps.
+- 2026-01-15 10:00:22: step 9: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:00:23: Backoff triggered after 9 no-move steps.
+- 2026-01-15 10:00:24: step 10: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:00:25: Backoff triggered after 10 no-move steps.
+- 2026-01-15 10:00:26: step 11: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:00:27: Backoff triggered after 11 no-move steps.
+- 2026-01-15 10:00:28: step 12: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:00:28: Backoff triggered after 12 no-move steps.
+- 2026-01-15 10:00:29: step 13: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:00:30: Backoff triggered after 13 no-move steps.
+- 2026-01-15 10:00:32: step 14: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:00:32: Backoff triggered after 14 no-move steps.
+- 2026-01-15 10:00:33: step 15: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:00:34: Backoff triggered after 15 no-move steps.
+- 2026-01-15 10:00:35: step 16: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:00:36: Backoff triggered after 16 no-move steps.
+- 2026-01-15 10:00:37: step 17: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:00:38: Backoff triggered after 17 no-move steps.
+- 2026-01-15 10:00:39: step 18: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:00:39: Backoff triggered after 18 no-move steps.
+- 2026-01-15 10:00:41: step 19: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:00:41: Backoff triggered after 19 no-move steps.
+- 2026-01-15 10:00:42: step 20: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:00:43: Backoff triggered after 20 no-move steps.
+- 2026-01-15 10:00:44: step 21: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:00:45: Backoff triggered after 21 no-move steps.
+- 2026-01-15 10:00:46: step 22: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:00:47: Backoff triggered after 22 no-move steps.
+- 2026-01-15 10:00:48: step 23: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:00:48: Backoff triggered after 23 no-move steps.
+- 2026-01-15 10:00:50: step 24: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:00:50: Backoff triggered after 24 no-move steps.
+- 2026-01-15 10:00:51: step 25: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:02:00: Starting agent loop.
+- 2026-01-15 10:02:00: step 1: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:02:00: step 2: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:02:01: step 3: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:02:02: step 4: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:02:02: step 5: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:02:03: step 6: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:02:04: step 7: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:02:04: step 8: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:02:05: Backoff triggered after 8 no-move steps.
+- 2026-01-15 10:02:06: step 9: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:02:07: Backoff triggered after 9 no-move steps.
+- 2026-01-15 10:02:08: step 10: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:02:09: Backoff triggered after 10 no-move steps.
+- 2026-01-15 10:02:10: step 11: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:02:11: Backoff triggered after 11 no-move steps.
+- 2026-01-15 10:02:12: step 12: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:02:13: Backoff triggered after 12 no-move steps.
+- 2026-01-15 10:02:14: step 13: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:02:14: Backoff triggered after 13 no-move steps.
+- 2026-01-15 10:02:16: step 14: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:02:16: Backoff triggered after 14 no-move steps.
+- 2026-01-15 10:02:17: step 15: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:02:18: Backoff triggered after 15 no-move steps.
+- 2026-01-15 10:02:19: step 16: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:02:20: Backoff triggered after 16 no-move steps.
+- 2026-01-15 10:02:21: step 17: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:02:22: Backoff triggered after 17 no-move steps.
+- 2026-01-15 10:02:23: step 18: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:02:24: Backoff triggered after 18 no-move steps.
+- 2026-01-15 10:02:25: step 19: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:02:26: Backoff triggered after 19 no-move steps.
+- 2026-01-15 10:02:27: step 20: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:02:28: Backoff triggered after 20 no-move steps.
+- 2026-01-15 10:02:29: step 21: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:02:30: Backoff triggered after 21 no-move steps.
+- 2026-01-15 10:02:31: step 22: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:02:32: Backoff triggered after 22 no-move steps.
+- 2026-01-15 10:02:33: step 23: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:02:34: Backoff triggered after 23 no-move steps.
+- 2026-01-15 10:02:35: step 24: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:02:35: State stale; skipping input to avoid desync.
+- 2026-01-15 10:02:35: step 25: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:02:35: State stale; skipping input to avoid desync.
+- 2026-01-15 10:02:36: step 26: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:02:36: State stale; skipping input to avoid desync.
+- 2026-01-15 10:02:36: step 27: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:02:36: State stale; skipping input to avoid desync.
+- 2026-01-15 10:15:53: Smoke test: emulator state read successfully.
+- 2026-01-15 10:16:17: Starting agent loop.
+- 2026-01-15 10:16:17: step 1: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:16:17: State stale; skipping input to avoid desync.
+- 2026-01-15 10:16:18: step 2: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:16:18: State stale; skipping input to avoid desync.
+- 2026-01-15 10:16:18: step 3: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:16:18: State stale; skipping input to avoid desync.
+- 2026-01-15 10:16:19: step 4: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:16:19: State stale; skipping input to avoid desync.
+- 2026-01-15 10:16:19: step 5: map=18 pos=(0,3) battle=0
+- 2026-01-15 10:16:19: State stale; skipping input to avoid desync.
+- 2026-01-15 10:16:20: Agent loop complete.

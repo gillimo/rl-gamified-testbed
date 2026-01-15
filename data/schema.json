@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "<project_name> State",
+  "type": "object",
+  "required": ["version", "account", "skills", "quests", "diaries", "gear", "unlocks", "goals"],
+  "properties": {
+    "version": {"type": "integer"},
+    "account": {
+      "type": "object",
+      "required": ["name", "mode", "members"],
+      "properties": {
+        "name": {"type": "string"},
+        "mode": {"type": "string"},
+        "members": {"type": "boolean"},
+        "combat_level": {"type": ["integer", "string"]},
+        "gp": {"type": "integer"},
+        "playstyle": {"type": "string"}
+      }
+    },
+    "skills": {"type": "object"},
+    "quests": {
+      "type": "object",
+      "properties": {
+        "completed": {"type": "array", "items": {"type": "string"}},
+        "in_progress": {"type": "array", "items": {"type": "string"}},
+        "not_started": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "diaries": {"type": "object"},
+    "gear": {"type": "object"},
+    "unlocks": {"type": "object"},
+    "goals": {"type": "object"}
+  }
+}
+
