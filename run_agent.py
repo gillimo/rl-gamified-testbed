@@ -6,7 +6,7 @@ from pathlib import Path
 
 from agent_core import Agent, agent_core as _core
 from src.goal_manager import GoalManager
-from src.perception import find_window
+from src.perception import find_window, force_focus_window
 
 STATE_PATH = Path("C:/Users/gilli/OneDrive/Desktop/projects/pokemon_yellow_agent/data/emulator_state.json")
 INPUT_PATH = Path("C:/Users/gilli/OneDrive/Desktop/projects/pokemon_yellow_agent/data/input_command.json")
@@ -39,9 +39,18 @@ def extract_game_text(bounds):
     left, top, right, bottom = bounds
     width, height = right - left, bottom - top
 
+    # Check for invalid bounds (minimized window)
+    if left < -10000 or width <= 0 or height <= 0:
+        return "(window minimized or invalid bounds)"
+
     try:
         # Capture game window
         img_data = _core.capture_region(left, top, width, height)
+
+        # Validate capture data
+        expected_size = width * height * 4  # RGBA = 4 bytes per pixel
+        if len(img_data) != expected_size:
+            return f"(capture failed: got {len(img_data)} bytes, expected {expected_size})"
 
         # OCR bottom region (dialogue box)
         bottom_h = height // 4
@@ -89,6 +98,16 @@ def main():
     log(f"Found window: {window.title}")
     log(f"Window bounds: {window.bounds}")
 
+    # Restore and focus window if minimized
+    if window.bounds[0] < -10000:  # Minimized windows have very negative coords
+        log("Window is minimized, restoring...")
+        force_focus_window(window.handle)
+        time.sleep(0.5)
+        # Re-find window to get updated bounds
+        window = find_window("BizHawk")
+        if window:
+            log(f"Window restored, new bounds: {window.bounds}")
+
     step = 0
     last_action = None
 
@@ -107,11 +126,27 @@ def main():
             }
             log(f"Game: {context}")
 
-        # 2. Extract text with OCR
+        # 2. Check if window got minimized, restore if needed
+        if window.bounds[0] < -10000:
+            log("Window minimized during loop, restoring...")
+            force_focus_window(window.handle)
+            time.sleep(0.5)
+            window = find_window("BizHawk")
+            if not window or window.bounds[0] < -10000:
+                log("ERROR: Could not restore window, skipping step")
+                continue
+
+        # 3. Extract text with OCR
         ocr_text = extract_game_text(window.bounds)
         log(f"OCR Text: {ocr_text[:100]}...")
 
-        # 3. Vision with OCR context
+        # Skip vision if OCR failed (window issues)
+        if "(window minimized" in ocr_text or "(capture failed" in ocr_text:
+            log("Skipping vision due to capture issue")
+            time.sleep(1)
+            continue
+
+        # 4. Vision with OCR context
         log("[1] Spotter seeing...")
         see_prompt = f"""This is Pokemon Yellow for Game Boy.
 
@@ -125,16 +160,16 @@ Based on the text and visuals, describe:
         visual_obs = agent.spotter.see(prompt=see_prompt, bounds=window.bounds)
         log(f"Saw: {visual_obs[:150]}...")
 
-        # 4. Update goals based on progress (every N steps)
+        # 5. Update goals based on progress (every N steps)
         goal_manager.update_goals(context, ocr_text, visual_obs, last_action)
         log(f"Goals:\n{goal_manager.get_goal_context()}")
 
-        # 5. Check if stuck
+        # 6. Check if stuck
         if goal_manager.is_stuck():
             log("STUCK DETECTED - Using unstuck action")
             action = goal_manager.get_unstuck_action()
         else:
-            # 6. Executor decides with full context
+            # 7. Executor decides with full context
             log("[2] Executor deciding...")
             full_context = f"""GAME STATE: {context}
 
@@ -156,7 +191,7 @@ VISUAL OBSERVATION:
 
         log(f"-> {action}")
 
-        # 7. Execute via Lua bridge
+        # 8. Execute via Lua bridge
         send_lua_input(action)
         last_action = action
 
