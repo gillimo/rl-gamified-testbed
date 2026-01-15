@@ -4,7 +4,9 @@ import time
 import uuid
 from pathlib import Path
 
-from agent_core import Agent
+from agent_core import Agent, agent_core as _core
+from src.goal_manager import GoalManager
+from src.perception import find_window
 
 STATE_PATH = Path("C:/Users/gilli/OneDrive/Desktop/projects/pokemon_yellow_agent/data/emulator_state.json")
 INPUT_PATH = Path("C:/Users/gilli/OneDrive/Desktop/projects/pokemon_yellow_agent/data/input_command.json")
@@ -25,13 +27,49 @@ def read_game_state():
     except:
         return None
 
+def extract_game_text(bounds):
+    """Extract text from game window using Tesseract OCR.
+
+    Args:
+        bounds: (left, top, right, bottom) tuple
+
+    Returns:
+        Extracted text string
+    """
+    left, top, right, bottom = bounds
+    width, height = right - left, bottom - top
+
+    try:
+        # Capture game window
+        img_data = _core.capture_region(left, top, width, height)
+
+        # OCR bottom region (dialogue box)
+        bottom_h = height // 4
+        text_bottom = _core.ocr_region(
+            img_data, width, height,
+            0, height - bottom_h, width, bottom_h
+        )
+
+        # OCR top region (menus, battle text)
+        top_h = height // 3
+        text_top = _core.ocr_region(
+            img_data, width, height,
+            0, 0, width, top_h
+        )
+
+        # Combine and clean
+        combined = f"{text_top.strip()}\n{text_bottom.strip()}".strip()
+        return combined if combined else "(no text detected)"
+    except Exception as e:
+        return f"(OCR error: {e})"
+
 def main():
     log("=" * 40)
     log("POKEMON YELLOW AGENT")
-    log("Spotter (Moondream) + Executor (Phi3)")
+    log("Moondream + Phi3 + Tesseract OCR")
     log("=" * 40)
 
-    # Create agent with both models
+    # Create agent + goal manager
     agent = Agent(
         spotter_model="moondream",
         executor_model="phi3",
@@ -39,12 +77,26 @@ def main():
         executor_timeout=60.0
     )
 
+    goal_manager = GoalManager(executor_model="phi3", timeout=30.0)
+
+    # Find game window (BizHawk)
+    window = find_window("BizHawk")
+    if not window:
+        log("ERROR: BizHawk window not found")
+        log("Make sure BizHawk is running with Pokemon Yellow loaded")
+        return
+
+    log(f"Found window: {window.title}")
+    log(f"Window bounds: {window.bounds}")
+
     step = 0
+    last_action = None
+
     while True:
         step += 1
         log(f"--- Step {step} ---")
 
-        # Get game state from Lua bridge
+        # 1. Read game state from Lua bridge
         state = read_game_state()
         context = {}
         if state:
@@ -55,50 +107,58 @@ def main():
             }
             log(f"Game: {context}")
 
-        # One step: Spotter sees -> Executor decides
+        # 2. Extract text with OCR
+        ocr_text = extract_game_text(window.bounds)
+        log(f"OCR Text: {ocr_text[:100]}...")
+
+        # 3. Vision with OCR context
         log("[1] Spotter seeing...")
-        log("[2] Executor deciding...")
-        
-        # Simple, concrete questions for Moondream
-        see_prompt = """Look at the Pokemon Yellow game window (the pixelated Game Boy screen).
+        see_prompt = f"""This is Pokemon Yellow for Game Boy.
 
-Answer these questions:
-1. Is there a text box with words at the bottom or top of screen? (yes/no)
-2. Can you see a small character sprite (the player) that can walk around? (yes/no)
-3. Is this a Pokemon battle with health bars? (yes/no)
-4. Is this a menu with list items? (yes/no)
-5. What colors dominate the screen? (helps identify screen type)
+TEXT ON SCREEN (from OCR):
+{ocr_text}
 
-Describe what you see in simple terms."""
+Based on the text and visuals, describe:
+- What type of screen? (dialogue, overworld, battle, menu, title)
+- What's the player supposed to do? (press A to continue, select option, move, etc.)"""
 
-        # Specific goal with Pokemon Yellow guidance for Executor
-        goal = """Become Pokemon Champion by progressing through Pokemon Yellow:
-- On title/menu screens: press START or A to continue
-- During dialogue: press A to advance text
-- In overworld: explore by moving UP/DOWN/LEFT/RIGHT, talk to NPCs with A
-- In battles: select FIGHT options, use moves strategically
-- In menus: navigate with directional keys, confirm with A
-- Goal: level up Pokemon, win battles, progress story"""
+        visual_obs = agent.spotter.see(prompt=see_prompt, bounds=window.bounds)
+        log(f"Saw: {visual_obs[:150]}...")
 
-        # Pokemon Yellow button options (Game Boy controls)
-        options = ["UP", "DOWN", "LEFT", "RIGHT", "A", "B", "START", "SELECT"]
+        # 4. Update goals based on progress (every N steps)
+        goal_manager.update_goals(context, ocr_text, visual_obs, last_action)
+        log(f"Goals:\n{goal_manager.get_goal_context()}")
 
-        action = agent.step(
-            goal=goal,
-            context=context,
-            options=options,
-            see_prompt=see_prompt
-        )
-
-        # Show full observation for debugging
-        if agent.last_observation:
-            log(f"Saw:\n{agent.last_observation}")
+        # 5. Check if stuck
+        if goal_manager.is_stuck():
+            log("STUCK DETECTED - Using unstuck action")
+            action = goal_manager.get_unstuck_action()
         else:
-            log("Saw: nothing")
+            # 6. Executor decides with full context
+            log("[2] Executor deciding...")
+            full_context = f"""GAME STATE: {context}
+
+TEXT ON SCREEN:
+{ocr_text}
+
+VISUAL OBSERVATION:
+{visual_obs}
+
+{goal_manager.get_goal_context()}"""
+
+            options = ["UP", "DOWN", "LEFT", "RIGHT", "A", "B", "START", "SELECT"]
+            decision = agent.executor.decide(
+                context=full_context,
+                options=options,
+                goal="Execute the short-term goal to progress medium-term goal"
+            )
+            action = agent.executor.parse_action(decision, options)
+
         log(f"-> {action}")
 
-        # Execute via Lua bridge (BizHawk needs joypad.set)
+        # 7. Execute via Lua bridge
         send_lua_input(action)
+        last_action = action
 
         time.sleep(1)
 
