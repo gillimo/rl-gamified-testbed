@@ -1,15 +1,10 @@
-"""Pokemon Yellow Agent - Vision + Game State (Moondream sees the screen)"""
+"""Pokemon Yellow Agent - Using agent_core's Spotter + Executor"""
 import json
 import time
 import uuid
 from pathlib import Path
 
-try:
-    import agent_core
-except ImportError:
-    agent_core = None
-
-from src.local_model import see_screen
+from agent_core import Agent
 
 STATE_PATH = Path("C:/Users/gilli/OneDrive/Desktop/projects/pokemon_yellow_agent/data/emulator_state.json")
 INPUT_PATH = Path("C:/Users/gilli/OneDrive/Desktop/projects/pokemon_yellow_agent/data/input_command.json")
@@ -18,6 +13,7 @@ def log(msg):
     print(f"[{time.strftime('%H:%M:%S')}] {msg}", flush=True)
 
 def send_lua_input(button, frames=12):
+    """Send input via Lua bridge for BizHawk."""
     cmd = {"id": str(uuid.uuid4())[:8], "button": button, "frames": frames}
     INPUT_PATH.write_text(json.dumps(cmd))
     log(f">>> {button}")
@@ -29,85 +25,79 @@ def read_game_state():
     except:
         return None
 
-def get_observation(retries=3):
-    if agent_core is None:
-        return None
-
-    for attempt in range(retries):
-        try:
-            obs_json = agent_core.get_observation()
-            obs = json.loads(obs_json)
-            if "error" not in obs and obs.get("width", 0) > 0:
-                return obs
-        except Exception as e:
-            log(f"    Retry {attempt+1}/{retries}: {e}")
-        time.sleep(0.2)
-
-    return None
-
-def capture_data():
-    """Get observation + game state with retry."""
-    for attempt in range(5):
-        obs = get_observation()
-        state = read_game_state()
-        if obs is not None:
-            return obs, state
-        log(f"    Capture retry {attempt+1}/5...")
-        time.sleep(0.5)
-    return None, None
-
-def ask_model(observation, game_state):
-    """Moondream sees the screen and decides."""
-    prompt = f"""You are playing Pokemon Yellow. Look at the screen and decide.
-
-GAME STATE:
-- Map: {game_state.get('map_id', '?') if game_state else '?'}
-- Position: ({game_state.get('player_x', '?')}, {game_state.get('player_y', '?')}) if game_state else '?'
-- In battle: {game_state.get('in_battle', False) if game_state else False}
-
-GOAL: Become Pokemon Champion. Catch Pokemon. Explore.
-
-What button should you press? Reply with ONLY one of:
-UP, DOWN, LEFT, RIGHT, A, B, START"""
-
-    log("Thinking...")
-    response = see_screen(prompt, timeout_s=180.0)
-    log(f"Model: {response[:100] if response else 'None'}...")
-    return response
-
-def parse_action(response):
-    if not response:
-        return "A"
-
-    r = response.upper()
-    for btn in ["START", "DOWN", "UP", "LEFT", "RIGHT", "B", "A"]:
-        if btn in r:
-            return btn
-    return "A"
-
 def main():
     log("=" * 40)
     log("POKEMON YELLOW AGENT")
-    log("Moondream vision + Game memory")
+    log("Spotter (Moondream) + Executor (Phi3)")
     log("=" * 40)
+
+    # Create agent with both models
+    agent = Agent(
+        spotter_model="moondream",
+        executor_model="phi3",
+        spotter_timeout=120.0,
+        executor_timeout=60.0
+    )
 
     step = 0
     while True:
         step += 1
         log(f"--- Step {step} ---")
 
-        obs, state = capture_data()
-        if obs is None:
-            log("Capture failed, skipping...")
-            time.sleep(1)
-            continue
-
+        # Get game state from Lua bridge
+        state = read_game_state()
+        context = {}
         if state:
-            log(f"Map={state.get('map_id')} Pos=({state.get('player_x')},{state.get('player_y')})")
+            context = {
+                "map": state.get("map_id"),
+                "pos": f"({state.get('player_x')},{state.get('player_y')})",
+                "battle": state.get("in_battle", False)
+            }
+            log(f"Game: {context}")
 
-        response = ask_model(obs, state)
-        action = parse_action(response)
+        # One step: Spotter sees -> Executor decides
+        log("[1] Spotter seeing...")
+        log("[2] Executor deciding...")
+        
+        # Simple, concrete questions for Moondream
+        see_prompt = """Look at the Pokemon Yellow game window (the pixelated Game Boy screen).
+
+Answer these questions:
+1. Is there a text box with words at the bottom or top of screen? (yes/no)
+2. Can you see a small character sprite (the player) that can walk around? (yes/no)
+3. Is this a Pokemon battle with health bars? (yes/no)
+4. Is this a menu with list items? (yes/no)
+5. What colors dominate the screen? (helps identify screen type)
+
+Describe what you see in simple terms."""
+
+        # Specific goal with Pokemon Yellow guidance for Executor
+        goal = """Become Pokemon Champion by progressing through Pokemon Yellow:
+- On title/menu screens: press START or A to continue
+- During dialogue: press A to advance text
+- In overworld: explore by moving UP/DOWN/LEFT/RIGHT, talk to NPCs with A
+- In battles: select FIGHT options, use moves strategically
+- In menus: navigate with directional keys, confirm with A
+- Goal: level up Pokemon, win battles, progress story"""
+
+        # Pokemon Yellow button options (Game Boy controls)
+        options = ["UP", "DOWN", "LEFT", "RIGHT", "A", "B", "START", "SELECT"]
+
+        action = agent.step(
+            goal=goal,
+            context=context,
+            options=options,
+            see_prompt=see_prompt
+        )
+
+        # Show full observation for debugging
+        if agent.last_observation:
+            log(f"Saw:\n{agent.last_observation}")
+        else:
+            log("Saw: nothing")
         log(f"-> {action}")
+
+        # Execute via Lua bridge (BizHawk needs joypad.set)
         send_lua_input(action)
 
         time.sleep(1)
