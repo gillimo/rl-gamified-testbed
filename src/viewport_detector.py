@@ -3,6 +3,11 @@ from typing import Tuple, Optional
 import agent_core as _core
 
 
+def log(msg):
+    """Simple logging function."""
+    print(f"[VIEWPORT] {msg}", flush=True)
+
+
 def detect_game_viewport(window_bounds: Tuple[int, int, int, int]) -> Optional[Tuple[int, int, int, int]]:
     """Detect the actual game screen within the emulator window.
 
@@ -40,15 +45,19 @@ def detect_game_viewport(window_bounds: Tuple[int, int, int, int]) -> Optional[T
 
         # Check top edge for uniform color (title bar)
         top_offset = _find_uniform_edge(pixels, width, height, 'top')
+        log(f"Top border offset: {top_offset}px")
 
         # Check left edge for uniform color (border)
         left_offset = _find_uniform_edge(pixels, width, height, 'left')
+        log(f"Left border offset: {left_offset}px")
 
         # Check right edge
         right_offset = _find_uniform_edge(pixels, width, height, 'right')
+        log(f"Right border offset: {right_offset}px")
 
         # Check bottom edge
         bottom_offset = _find_uniform_edge(pixels, width, height, 'bottom')
+        log(f"Bottom border offset: {bottom_offset}px")
 
         # Calculate game viewport
         game_left = left + left_offset
@@ -60,10 +69,14 @@ def detect_game_viewport(window_bounds: Tuple[int, int, int, int]) -> Optional[T
         game_width = game_right - game_left
         game_height = game_bottom - game_top
 
+        log(f"Detected viewport size: {game_width}x{game_height}")
+
         if game_width <= 100 or game_height <= 100:
             # Viewport too small, probably failed detection
+            log(f"ERROR: Viewport too small ({game_width}x{game_height}), rejecting")
             return None
 
+        log(f"SUCCESS: Viewport detected at ({game_left}, {game_top}, {game_right}, {game_bottom})")
         return (game_left, game_top, game_right, game_bottom)
 
     except Exception as e:
