@@ -183,16 +183,27 @@ def main():
     log(f"Client area: {client_bounds}")
     log(f"Client size: {client_bounds[2] - client_bounds[0]}x{client_bounds[3] - client_bounds[1]}")
 
-    # Try to detect game viewport within client area
+    # Crop off menu bar (typically top ~25 pixels of client area on Windows)
+    # BizHawk's menu bar is included in client area
+    menu_bar_height = 25
+    content_bounds = (
+        client_bounds[0],
+        client_bounds[1] + menu_bar_height,
+        client_bounds[2],
+        client_bounds[3]
+    )
+    log(f"Content area (no menu): {content_bounds}")
+
+    # Try to detect game viewport within content area
     log("Detecting game viewport...")
-    game_viewport = detect_game_viewport(client_bounds)
+    game_viewport = detect_game_viewport(content_bounds)
     if game_viewport:
         log(f"Game viewport detected: {game_viewport}")
         log(f"Viewport size: {game_viewport[2] - game_viewport[0]}x{game_viewport[3] - game_viewport[1]}")
         capture_bounds = game_viewport
     else:
-        log("WARNING: Could not detect game viewport, using client area")
-        capture_bounds = client_bounds
+        log("WARNING: Could not detect game viewport, using content area")
+        capture_bounds = content_bounds
 
     step = 0
     last_action = None
