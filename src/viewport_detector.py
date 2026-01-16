@@ -11,6 +11,10 @@ def log(msg):
 def detect_game_viewport(window_bounds: Tuple[int, int, int, int]) -> Optional[Tuple[int, int, int, int]]:
     """Detect the actual game screen within the emulator window.
 
+    Strategy: Scan the captured image for regions with Game Boy colors.
+    Window chrome is typically white/gray/black. Game Boy has distinctive
+    yellows, greens, blues. Find the largest rectangle with game colors.
+
     Args:
         window_bounds: (left, top, right, bottom) of entire window
 
@@ -22,158 +26,99 @@ def detect_game_viewport(window_bounds: Tuple[int, int, int, int]) -> Optional[T
     height = bottom - top
 
     if width <= 0 or height <= 0:
+        log(f"Invalid window bounds: {width}x{height}")
         return None
 
     try:
         # Capture entire window
+        log(f"Capturing window: {width}x{height}")
         img_data = _core.capture_region(left, top, width, height)
 
         # Expected size check
         expected_size = width * height * 4  # RGBA
         if len(img_data) != expected_size:
+            log(f"Capture size mismatch: got {len(img_data)}, expected {expected_size}")
             return None
 
-        # Strategy: Find the region with highest color variance
-        # Window chrome (borders, title bar) will be uniform gray/white
-        # Game content will have varied colors
-
-        # Convert to bytes for processing
         pixels = bytes(img_data)
 
-        # Scan for largest rectangular region with high variance
-        # Start by checking edges to find uniform borders
+        # Strategy: Find bounding box of non-gray pixels
+        # Game Boy screen has colors, borders are white/gray
+        min_x, max_x = width, 0
+        min_y, max_y = height, 0
 
-        # Check top edge for uniform color (title bar)
-        top_offset = _find_uniform_edge(pixels, width, height, 'top')
-        log(f"Top border offset: {top_offset}px")
+        # Scan every 10th pixel to find game colors (not gray/white)
+        stride = 10
+        found_pixels = 0
 
-        # Check left edge for uniform color (border)
-        left_offset = _find_uniform_edge(pixels, width, height, 'left')
-        log(f"Left border offset: {left_offset}px")
+        for y in range(0, height, stride):
+            for x in range(0, width, stride):
+                idx = (y * width + x) * 4
+                if idx + 3 < len(pixels):
+                    r, g, b = pixels[idx], pixels[idx + 1], pixels[idx + 2]
 
-        # Check right edge
-        right_offset = _find_uniform_edge(pixels, width, height, 'right')
-        log(f"Right border offset: {right_offset}px")
+                    # Check if this is a "game" color (not gray/white/black chrome)
+                    if _is_game_color(r, g, b):
+                        found_pixels += 1
+                        min_x = min(min_x, x)
+                        max_x = max(max_x, x)
+                        min_y = min(min_y, y)
+                        max_y = max(max_y, y)
 
-        # Check bottom edge
-        bottom_offset = _find_uniform_edge(pixels, width, height, 'bottom')
-        log(f"Bottom border offset: {bottom_offset}px")
+        log(f"Found {found_pixels} game-colored pixels")
 
-        # Calculate game viewport
-        game_left = left + left_offset
-        game_top = top + top_offset
-        game_right = right - right_offset
-        game_bottom = bottom - bottom_offset
+        if found_pixels < 100:  # Need at least 100 colored pixels
+            log("Not enough game pixels found")
+            return None
 
-        # Validate detected viewport
+        # Add padding to bounds (we sampled every 10px)
+        padding = 20
+        game_left = max(left, left + min_x - padding)
+        game_top = max(top, top + min_y - padding)
+        game_right = min(right, left + max_x + padding)
+        game_bottom = min(bottom, top + max_y + padding)
+
         game_width = game_right - game_left
         game_height = game_bottom - game_top
 
-        log(f"Detected viewport size: {game_width}x{game_height}")
+        log(f"Detected game region: {min_x},{min_y} -> {max_x},{max_y}")
+        log(f"Game viewport: ({game_left}, {game_top}, {game_right}, {game_bottom})")
+        log(f"Viewport size: {game_width}x{game_height}")
 
-        if game_width <= 100 or game_height <= 100:
-            # Viewport too small, probably failed detection
-            log(f"ERROR: Viewport too small ({game_width}x{game_height}), rejecting")
+        if game_width < 100 or game_height < 100:
+            log(f"Viewport too small: {game_width}x{game_height}")
             return None
 
-        log(f"SUCCESS: Viewport detected at ({game_left}, {game_top}, {game_right}, {game_bottom})")
         return (game_left, game_top, game_right, game_bottom)
 
     except Exception as e:
-        print(f"Viewport detection error: {e}")
+        log(f"Detection error: {e}")
+        import traceback
+        traceback.print_exc()
         return None
 
 
-def _find_uniform_edge(pixels: bytes, width: int, height: int, edge: str) -> int:
-    """Find how many pixels from edge are uniform color (border/chrome)."""
+def _is_game_color(r: int, g: int, b: int) -> bool:
+    """Check if RGB is likely a game color (not window chrome).
 
-    # Sample pixels from the edge
-    sample_size = 10  # Sample 10 pixels
-    threshold = 20  # Color variance threshold
+    Window chrome is typically:
+    - White/light gray: R,G,B all > 200
+    - Dark gray/black: R,G,B all < 50
+    - Similar values: abs(R-G) < 20 and abs(G-B) < 20
 
-    if edge == 'top':
-        # Check rows from top
-        for row in range(min(100, height // 4)):  # Check up to 25% of height
-            if _row_has_variance(pixels, width, height, row, threshold):
-                return row  # Found content, border ends here
-        return 30  # Default top border (title bar typically ~30px)
-
-    elif edge == 'left':
-        # Check columns from left
-        for col in range(min(100, width // 4)):
-            if _col_has_variance(pixels, width, height, col, threshold):
-                return col
-        return 8  # Default left border
-
-    elif edge == 'right':
-        # Check columns from right
-        for offset in range(min(100, width // 4)):
-            col = width - 1 - offset
-            if _col_has_variance(pixels, width, height, col, threshold):
-                return offset
-        return 8  # Default right border
-
-    elif edge == 'bottom':
-        # Check rows from bottom
-        for offset in range(min(100, height // 4)):
-            row = height - 1 - offset
-            if _row_has_variance(pixels, width, height, row, threshold):
-                return offset
-        return 8  # Default bottom border
-
-    return 0
-
-
-def _row_has_variance(pixels: bytes, width: int, height: int, row: int, threshold: int) -> bool:
-    """Check if a row of pixels has color variance (likely game content)."""
-    if row >= height:
+    Game Boy colors are more varied and saturated.
+    """
+    # Skip very light (white borders)
+    if r > 220 and g > 220 and b > 220:
         return False
 
-    # Sample a few pixels from the row
-    samples = []
-    for x in range(0, width, max(1, width // 10)):  # Sample ~10 points
-        idx = (row * width + x) * 4
-        if idx + 3 < len(pixels):
-            r, g, b = pixels[idx], pixels[idx + 1], pixels[idx + 2]
-            samples.append((r, g, b))
-
-    if len(samples) < 2:
+    # Skip very dark (black borders)
+    if r < 30 and g < 30 and b < 30:
         return False
 
-    # Calculate variance
-    return _color_variance(samples) > threshold
-
-
-def _col_has_variance(pixels: bytes, width: int, height: int, col: int, threshold: int) -> bool:
-    """Check if a column of pixels has color variance."""
-    if col >= width:
+    # Skip gray (similar R,G,B values = achromatic)
+    if abs(r - g) < 30 and abs(g - b) < 30 and abs(r - b) < 30:
         return False
 
-    samples = []
-    for y in range(0, height, max(1, height // 10)):  # Sample ~10 points
-        idx = (y * width + col) * 4
-        if idx + 3 < len(pixels):
-            r, g, b = pixels[idx], pixels[idx + 1], pixels[idx + 2]
-            samples.append((r, g, b))
-
-    if len(samples) < 2:
-        return False
-
-    return _color_variance(samples) > threshold
-
-
-def _color_variance(colors: list) -> float:
-    """Calculate variance in a list of RGB colors."""
-    if len(colors) < 2:
-        return 0
-
-    # Calculate variance in R, G, B separately
-    r_vals = [c[0] for c in colors]
-    g_vals = [c[1] for c in colors]
-    b_vals = [c[2] for c in colors]
-
-    r_var = max(r_vals) - min(r_vals)
-    g_var = max(g_vals) - min(g_vals)
-    b_var = max(b_vals) - min(b_vals)
-
-    return (r_var + g_var + b_var) / 3
+    # This has some color variation - likely game content
+    return True
