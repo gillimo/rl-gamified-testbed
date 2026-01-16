@@ -109,10 +109,19 @@ def main():
 
     goal_manager = GoalManager(executor_model="phi3", timeout=30.0)
 
-    # Find game window (BizHawk)
-    window = find_window("BizHawk")
+    # Find game window (BizHawk) - retry for up to 30 seconds
+    log("Waiting for BizHawk window...")
+    window = None
+    for attempt in range(30):
+        window = find_window("BizHawk")
+        if window:
+            break
+        if attempt == 0:
+            log("BizHawk window not found yet, waiting...")
+        time.sleep(1)
+
     if not window:
-        log("ERROR: BizHawk window not found")
+        log("ERROR: BizHawk window not found after 30 seconds")
         log("Make sure BizHawk is running with Pokemon Yellow loaded")
         return
 
