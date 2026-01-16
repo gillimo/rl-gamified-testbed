@@ -7,6 +7,7 @@ from pathlib import Path
 from agent_core import Agent, agent_core as _core
 from src.goal_manager import GoalManager
 from src.perception import find_window, force_focus_window
+from src.viewport_detector import detect_game_viewport
 
 STATE_PATH = Path("C:/Users/gilli/OneDrive/Desktop/projects/pokemon_yellow_agent/data/emulator_state.json")
 INPUT_PATH = Path("C:/Users/gilli/OneDrive/Desktop/projects/pokemon_yellow_agent/data/input_command.json")
@@ -120,6 +121,17 @@ def main():
         if window:
             log(f"Window restored, new bounds: {window.bounds}")
 
+    # Detect actual game viewport within window
+    log("Detecting game viewport...")
+    game_viewport = detect_game_viewport(window.bounds)
+    if game_viewport:
+        log(f"Game viewport detected: {game_viewport}")
+        log(f"Viewport size: {game_viewport[2] - game_viewport[0]}x{game_viewport[3] - game_viewport[1]}")
+        capture_bounds = game_viewport
+    else:
+        log("WARNING: Could not detect game viewport, using full window")
+        capture_bounds = window.bounds
+
     step = 0
     last_action = None
 
@@ -147,9 +159,15 @@ def main():
             if not window or window.bounds[0] < -10000:
                 log("ERROR: Could not restore window, skipping step")
                 continue
+            # Re-detect viewport if window was restored
+            game_viewport = detect_game_viewport(window.bounds)
+            if game_viewport:
+                capture_bounds = game_viewport
+            else:
+                capture_bounds = window.bounds
 
         # 3. Extract text with OCR (save debug image on first step)
-        ocr_text = extract_game_text(window.bounds, save_debug_image=(step == 1))
+        ocr_text = extract_game_text(capture_bounds, save_debug_image=(step == 1))
         log(f"OCR Text: {ocr_text[:100]}...")
 
         # Skip vision if OCR failed (window issues)
@@ -169,7 +187,7 @@ Based on the text and visuals, describe:
 - What type of screen? (dialogue, overworld, battle, menu, title)
 - What's the player supposed to do? (press A to continue, select option, move, etc.)"""
 
-        visual_obs = agent.spotter.see(prompt=see_prompt, bounds=window.bounds)
+        visual_obs = agent.spotter.see(prompt=see_prompt, bounds=capture_bounds)
         log(f"Saw: {visual_obs[:150]}...")
 
         # 5. Update goals based on progress (every N steps)
