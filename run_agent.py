@@ -6,7 +6,7 @@ from pathlib import Path
 
 from agent_core import Agent, agent_core as _core
 from src.goal_manager import GoalManager
-from src.perception import find_window, force_focus_window
+from src.perception import find_window, force_focus_window, _get_client_bounds
 from src.viewport_detector import detect_game_viewport
 
 STATE_PATH = Path("C:/Users/gilli/OneDrive/Desktop/projects/pokemon_yellow_agent/data/emulator_state.json")
@@ -128,26 +128,47 @@ def main():
     log(f"Found window: {window.title}")
     log(f"Window bounds: {window.bounds}")
 
-    # Restore and focus window if minimized
-    if window.bounds[0] < -10000:  # Minimized windows have very negative coords
-        log("Window is minimized, restoring...")
-        force_focus_window(window.handle)
-        time.sleep(0.5)
-        # Re-find window to get updated bounds
-        window = find_window("BizHawk")
-        if window:
-            log(f"Window restored, new bounds: {window.bounds}")
+    # Restore and maximize window
+    log("Maximizing BizHawk window...")
+    import ctypes
+    SW_MAXIMIZE = 3
+    SW_RESTORE = 9
 
-    # Detect actual game viewport within window
+    # First restore if minimized
+    if window.bounds[0] < -10000:
+        ctypes.windll.user32.ShowWindow(window.handle, SW_RESTORE)
+        time.sleep(0.3)
+
+    # Then maximize
+    ctypes.windll.user32.ShowWindow(window.handle, SW_MAXIMIZE)
+    time.sleep(0.5)
+
+    # Bring to foreground
+    force_focus_window(window.handle)
+
+    # Re-find window to get updated bounds
+    window = find_window("BizHawk")
+    if not window:
+        log("ERROR: Lost window after maximize")
+        return
+
+    log(f"Window maximized: {window.bounds}")
+
+    # Use client area (without title bar/menus) instead of full window
+    client_bounds = _get_client_bounds(window.handle)
+    log(f"Client area: {client_bounds}")
+    log(f"Client size: {client_bounds[2] - client_bounds[0]}x{client_bounds[3] - client_bounds[1]}")
+
+    # Try to detect game viewport within client area
     log("Detecting game viewport...")
-    game_viewport = detect_game_viewport(window.bounds)
+    game_viewport = detect_game_viewport(client_bounds)
     if game_viewport:
         log(f"Game viewport detected: {game_viewport}")
         log(f"Viewport size: {game_viewport[2] - game_viewport[0]}x{game_viewport[3] - game_viewport[1]}")
         capture_bounds = game_viewport
     else:
-        log("WARNING: Could not detect game viewport, using full window")
-        capture_bounds = window.bounds
+        log("WARNING: Could not detect game viewport, using client area")
+        capture_bounds = client_bounds
 
     step = 0
     last_action = None
@@ -177,11 +198,12 @@ def main():
                 log("ERROR: Could not restore window, skipping step")
                 continue
             # Re-detect viewport if window was restored
-            game_viewport = detect_game_viewport(window.bounds)
+            client_bounds = _get_client_bounds(window.handle)
+            game_viewport = detect_game_viewport(client_bounds)
             if game_viewport:
                 capture_bounds = game_viewport
             else:
-                capture_bounds = window.bounds
+                capture_bounds = client_bounds
 
         # 3. Extract text with OCR (save debug image on first step)
         ocr_text = extract_game_text(capture_bounds, save_debug_image=(step == 1))

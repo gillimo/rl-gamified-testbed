@@ -29,6 +29,26 @@ def _get_window_bounds(handle: int) -> Tuple[int, int, int, int]:
     return rect.left, rect.top, rect.right, rect.bottom
 
 
+def _get_client_bounds(handle: int) -> Tuple[int, int, int, int]:
+    """Get client area bounds (content without title bar/menus) in screen coordinates."""
+    # Get client area rectangle (relative to window)
+    client_rect = wintypes.RECT()
+    ctypes.windll.user32.GetClientRect(handle, ctypes.byref(client_rect))
+
+    # Convert top-left client point to screen coordinates
+    class POINT(ctypes.Structure):
+        _fields_ = [("x", ctypes.c_long), ("y", ctypes.c_long)]
+
+    top_left = POINT(client_rect.left, client_rect.top)
+    ctypes.windll.user32.ClientToScreen(handle, ctypes.byref(top_left))
+
+    # Client rect right/bottom are relative, so add to screen coords
+    width = client_rect.right - client_rect.left
+    height = client_rect.bottom - client_rect.top
+
+    return top_left.x, top_left.y, top_left.x + width, top_left.y + height
+
+
 def _get_window_title(handle: int) -> str:
     length = ctypes.windll.user32.GetWindowTextLengthW(handle)
     buffer = ctypes.create_unicode_buffer(length + 1)
