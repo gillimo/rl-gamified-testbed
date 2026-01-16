@@ -176,7 +176,7 @@ def main():
 
         # 3. Extract text with OCR (save debug image on first step)
         ocr_text = extract_game_text(capture_bounds, save_debug_image=(step == 1))
-        log(f"OCR Text: {ocr_text[:100]}...")
+        log(f"OCR Text: {ocr_text}")
 
         # Skip vision if OCR failed (window issues)
         if "(window minimized" in ocr_text or "(capture failed" in ocr_text:
@@ -196,7 +196,7 @@ Based on the text and visuals, describe:
 - What's the player supposed to do? (press A to continue, select option, move, etc.)"""
 
         visual_obs = agent.spotter.see(prompt=see_prompt, bounds=capture_bounds)
-        log(f"Saw: {visual_obs[:150]}...")
+        log(f"Saw: {visual_obs}")
 
         # 5. Update goals based on progress (every N steps)
         goal_manager.update_goals(context, ocr_text, visual_obs, last_action)
