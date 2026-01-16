@@ -9,11 +9,12 @@ class GoalManager:
 
     def __init__(self, executor_model: str = "phi3", timeout: float = 30.0):
         self.executor = Executor(model=executor_model, timeout=timeout)
-        self.medium_term_goal = "Complete intro sequence and get starter Pokemon"
-        self.short_term_goal = "Advance dialogue by pressing A"
+        # NO hardcoded goals - Phi3 sets them on first observation
+        self.medium_term_goal = None
+        self.short_term_goal = None
         self.context_history = []
         self.steps_since_goal_update = 0
-        self.goal_update_frequency = 5  # Update goals every N steps
+        self.goal_update_frequency = 1  # Update goals EVERY step initially until set
 
     def update_goals(self, game_state: Dict, ocr_text: str,
                      visual_obs: str, last_action: Optional[str]) -> None:
@@ -40,19 +41,43 @@ class GoalManager:
         if len(self.context_history) > 5:
             self.context_history.pop(0)
 
-        # Only update goals every N steps to save time
-        self.steps_since_goal_update += 1
-        if self.steps_since_goal_update < self.goal_update_frequency:
-            return
+        # ALWAYS update if goals not set yet (first run)
+        if self.medium_term_goal is None or self.short_term_goal is None:
+            self.steps_since_goal_update = 0
+        else:
+            # Only update goals every N steps to save time (once goals exist)
+            self.steps_since_goal_update += 1
+            if self.steps_since_goal_update < self.goal_update_frequency:
+                return
+            self.steps_since_goal_update = 0
+            # After first goals set, reduce update frequency
+            self.goal_update_frequency = 3
 
-        self.steps_since_goal_update = 0
+        # Ask Phi3 to analyze progress and set/update goals
+        if self.medium_term_goal is None:
+            task_instruction = """TASK: This is the first observation. Set initial goals based on what you see.
+1. What should the SHORT-TERM goal be? (specific next action)
+2. What should the MEDIUM-TERM goal be? (strategic objective for Pokemon Yellow)
 
-        # Ask Phi3 to analyze progress
-        prompt = f"""You are tracking goals for Pokemon Yellow agent.
-
-CURRENT GOALS:
+Respond in this format:
+SHORT_TERM: <specific next action goal>
+MEDIUM_TERM: <strategic objective>
+REASONING: <why these goals>"""
+        else:
+            task_instruction = f"""CURRENT GOALS:
 - Medium-term: {self.medium_term_goal}
 - Short-term: {self.short_term_goal}
+
+TASK: Update goals based on progress.
+1. Has the short-term goal been achieved? If yes, what's the next short-term goal?
+2. Is the medium-term goal still relevant? If not, what's the new medium-term goal?
+
+Respond in this format:
+SHORT_TERM: <specific next action goal>
+MEDIUM_TERM: <strategic objective>
+REASONING: <why these goals>"""
+
+        prompt = f"""You are tracking goals for Pokemon Yellow agent.
 
 CURRENT SITUATION:
 - Map: {context['map']}, Position: {context['position']}
@@ -63,14 +88,7 @@ CURRENT SITUATION:
 RECENT HISTORY (last {len(self.context_history)} steps):
 {json.dumps(self.context_history, indent=2)}
 
-TASK: Update goals based on progress.
-1. Has the short-term goal been achieved? If yes, what's the next short-term goal?
-2. Is the medium-term goal still relevant? If not, what's the new medium-term goal?
-
-Respond in this format:
-SHORT_TERM: <specific next action goal>
-MEDIUM_TERM: <strategic objective>
-REASONING: <why these goals>"""
+{task_instruction}"""
 
         response = self.executor.decide(context=prompt,
                                        options=["analyze"],
@@ -86,6 +104,8 @@ REASONING: <why these goals>"""
 
     def get_goal_context(self) -> str:
         """Get formatted goal context for Executor."""
+        if self.medium_term_goal is None or self.short_term_goal is None:
+            return "CURRENT GOALS: Not yet set (analyzing first observation...)"
         return f"""CURRENT GOALS:
 Medium-term: {self.medium_term_goal}
 Short-term: {self.short_term_goal}"""
@@ -102,6 +122,10 @@ Short-term: {self.short_term_goal}"""
 
         # Stuck if position unchanged AND text unchanged
         return (len(set(positions)) == 1 and len(set(texts)) == 1)
+
+    def has_question_mark(self, ocr_text: str) -> bool:
+        """Simple check: does text contain a question mark?"""
+        return "?" in ocr_text
 
     def get_unstuck_action(self) -> str:
         """Suggest action to get unstuck."""

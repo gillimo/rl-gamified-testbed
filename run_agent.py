@@ -164,16 +164,25 @@ Based on the text and visuals, describe:
         goal_manager.update_goals(context, ocr_text, visual_obs, last_action)
         log(f"Goals:\n{goal_manager.get_goal_context()}")
 
-        # 6. Check if stuck
+        # 6. Highlight if question mark detected (Phi3 will handle the rest)
+        has_question = goal_manager.has_question_mark(ocr_text)
+        if has_question:
+            log("QUESTION MARK DETECTED in OCR text - Phi3 will analyze")
+
+        # 7. Check if stuck
         if goal_manager.is_stuck():
             log("STUCK DETECTED - Using unstuck action")
             action = goal_manager.get_unstuck_action()
         else:
-            # 7. Executor decides with full context
+            # 8. Executor decides with full context
             log("[2] Executor deciding...")
+
+            # Emphasize OCR text in context (especially if question detected)
+            ocr_emphasis = "**IMPORTANT** " if has_question else ""
+
             full_context = f"""GAME STATE: {context}
 
-TEXT ON SCREEN:
+{ocr_emphasis}TEXT ON SCREEN (from OCR):
 {ocr_text}
 
 VISUAL OBSERVATION:
