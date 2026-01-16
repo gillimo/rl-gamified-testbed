@@ -29,13 +29,22 @@ echo Screen: %SCREEN_WIDTH% x %SCREEN_HEIGHT%
 echo BizHawk: 0, 0, %BIZHAWK_WIDTH% x %BIZHAWK_HEIGHT%
 echo Console: %CONSOLE_LEFT%, 0, %CONSOLE_WIDTH% x %CONSOLE_HEIGHT%
 
-:: Start BizHawk with ROM and Lua script
+:: Start BizHawk with ROM (Lua will auto-load if configured, or load manually)
 echo Starting BizHawk with Pokemon Yellow...
-cd /d C:\Users\gilli\OneDrive\Desktop\projects\pokemon_yellow_agent
-start "" "tools\bizhawk\EmuHawk.exe" "roms\Pokemon - Yellow Version (UE) [C][!].gbc" --lua="tools\bizhawk\pokemon_yellow_bridge.lua"
+cd /d C:\Users\gilli\OneDrive\Desktop\projects\pokemon_yellow_agent\tools\bizhawk
+start "" "EmuHawk.exe" "..\..\roms\Pokemon - Yellow Version (UE) [C][!].gbc"
 
 :: Wait for BizHawk window to appear
-timeout /t 3 /nobreak >nul
+echo Waiting for BizHawk to start...
+timeout /t 5 /nobreak >nul
+
+echo.
+echo IMPORTANT: In BizHawk, go to Tools ^> Lua Console
+echo            Then load: pokemon_yellow_bridge.lua
+echo            (This enables the agent to control the game)
+echo.
+echo Press any key once Lua script is loaded...
+pause >nul
 
 :: Position BizHawk window (left 2/3)
 echo Positioning BizHawk window...
