@@ -54,6 +54,8 @@ def extract_game_text(bounds, save_debug_image=False):
         return "(invalid capture dimensions)"
 
     try:
+        from PIL import Image, ImageEnhance
+
         # Capture game window (clamped to screen)
         img_data = _core.capture_region(capture_left, capture_top, width, height)
 
@@ -62,29 +64,51 @@ def extract_game_text(bounds, save_debug_image=False):
         if len(img_data) != expected_size:
             return f"(capture failed: got {len(img_data)} bytes, expected {expected_size})"
 
-        # DEBUG: Save image to see what we're capturing
+        # Convert to PIL Image
+        img = Image.frombytes("RGBA", (width, height), bytes(img_data))
+
+        # DEBUG: Save original image
         if save_debug_image:
             try:
-                from PIL import Image
                 debug_path = Path("debug_capture.png")
-                img = Image.frombytes("RGBA", (width, height), bytes(img_data))
                 img.save(debug_path)
                 log(f"DEBUG: Saved capture to {debug_path.absolute()}")
             except Exception as e:
                 log(f"DEBUG: Could not save image: {e}")
 
+        # Preprocess for better OCR: upscale 3x, convert to grayscale, enhance contrast
+        img = img.convert("RGB")
+        img = img.resize((width * 3, height * 3), Image.NEAREST)  # Upscale with nearest neighbor (no blur)
+        img = img.convert("L")  # Grayscale
+        enhancer = ImageEnhance.Contrast(img)
+        img = enhancer.enhance(2.0)  # Increase contrast
+
+        # Convert back to RGBA bytes for agent_core
+        img_rgba = img.convert("RGBA")
+        processed_data = list(img_rgba.tobytes())
+        new_width, new_height = img_rgba.size
+
+        # Save preprocessed image for debugging
+        if save_debug_image:
+            try:
+                debug_proc_path = Path("debug_capture_processed.png")
+                img.save(debug_proc_path)
+                log(f"DEBUG: Saved preprocessed to {debug_proc_path.absolute()}")
+            except Exception as e:
+                log(f"DEBUG: Could not save processed: {e}")
+
         # OCR bottom region (dialogue box)
-        bottom_h = height // 4
+        bottom_h = new_height // 4
         text_bottom = _core.ocr_region(
-            img_data, width, height,
-            0, height - bottom_h, width, bottom_h
+            processed_data, new_width, new_height,
+            0, new_height - bottom_h, new_width, bottom_h
         )
 
         # OCR top region (menus, battle text)
-        top_h = height // 3
+        top_h = new_height // 3
         text_top = _core.ocr_region(
-            img_data, width, height,
-            0, 0, width, top_h
+            processed_data, new_width, new_height,
+            0, 0, new_width, top_h
         )
 
         # Combine and clean
