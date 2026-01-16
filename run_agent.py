@@ -27,11 +27,12 @@ def read_game_state():
     except:
         return None
 
-def extract_game_text(bounds):
+def extract_game_text(bounds, save_debug_image=False):
     """Extract text from game window using Tesseract OCR.
 
     Args:
         bounds: (left, top, right, bottom) tuple
+        save_debug_image: If True, save captured image for debugging
 
     Returns:
         Extracted text string
@@ -51,6 +52,17 @@ def extract_game_text(bounds):
         expected_size = width * height * 4  # RGBA = 4 bytes per pixel
         if len(img_data) != expected_size:
             return f"(capture failed: got {len(img_data)} bytes, expected {expected_size})"
+
+        # DEBUG: Save image to see what we're capturing
+        if save_debug_image:
+            try:
+                from PIL import Image
+                debug_path = Path("debug_capture.png")
+                img = Image.frombytes("RGBA", (width, height), bytes(img_data))
+                img.save(debug_path)
+                log(f"DEBUG: Saved capture to {debug_path.absolute()}")
+            except Exception as e:
+                log(f"DEBUG: Could not save image: {e}")
 
         # OCR bottom region (dialogue box)
         bottom_h = height // 4
@@ -136,8 +148,8 @@ def main():
                 log("ERROR: Could not restore window, skipping step")
                 continue
 
-        # 3. Extract text with OCR
-        ocr_text = extract_game_text(window.bounds)
+        # 3. Extract text with OCR (save debug image on first step)
+        ocr_text = extract_game_text(window.bounds, save_debug_image=(step == 1))
         log(f"OCR Text: {ocr_text[:100]}...")
 
         # Skip vision if OCR failed (window issues)
