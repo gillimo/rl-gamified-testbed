@@ -39,15 +39,23 @@ def extract_game_text(bounds, save_debug_image=False):
         Extracted text string
     """
     left, top, right, bottom = bounds
-    width, height = right - left, bottom - top
 
     # Check for invalid bounds (minimized window)
-    if left < -10000 or width <= 0 or height <= 0:
+    if left < -10000:
         return "(window minimized or invalid bounds)"
 
+    # Clamp negative coordinates (window borders/shadows can be off-screen)
+    capture_left = max(left, 0)
+    capture_top = max(top, 0)
+    width = right - capture_left
+    height = bottom - capture_top
+
+    if width <= 0 or height <= 0:
+        return "(invalid capture dimensions)"
+
     try:
-        # Capture game window
-        img_data = _core.capture_region(left, top, width, height)
+        # Capture game window (clamped to screen)
+        img_data = _core.capture_region(capture_left, capture_top, width, height)
 
         # Validate capture data
         expected_size = width * height * 4  # RGBA = 4 bytes per pixel

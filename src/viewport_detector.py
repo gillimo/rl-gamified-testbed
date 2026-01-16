@@ -22,17 +22,21 @@ def detect_game_viewport(window_bounds: Tuple[int, int, int, int]) -> Optional[T
         (left, top, right, bottom) of game viewport, or None if not found
     """
     left, top, right, bottom = window_bounds
-    width = right - left
-    height = bottom - top
+
+    # Clamp negative coordinates (window borders/shadows can be off-screen)
+    capture_left = max(left, 0)
+    capture_top = max(top, 0)
+    width = right - capture_left
+    height = bottom - capture_top
 
     if width <= 0 or height <= 0:
         log(f"Invalid window bounds: {width}x{height}")
         return None
 
     try:
-        # Capture entire window
-        log(f"Capturing window: {width}x{height}")
-        img_data = _core.capture_region(left, top, width, height)
+        # Capture entire window (clamped to screen)
+        log(f"Capturing window from ({capture_left}, {capture_top}): {width}x{height}")
+        img_data = _core.capture_region(capture_left, capture_top, width, height)
 
         # Expected size check
         expected_size = width * height * 4  # RGBA
@@ -72,11 +76,12 @@ def detect_game_viewport(window_bounds: Tuple[int, int, int, int]) -> Optional[T
             return None
 
         # Add padding to bounds (we sampled every 10px)
+        # Convert from capture coordinates back to screen coordinates
         padding = 20
-        game_left = max(left, left + min_x - padding)
-        game_top = max(top, top + min_y - padding)
-        game_right = min(right, left + max_x + padding)
-        game_bottom = min(bottom, top + max_y + padding)
+        game_left = max(capture_left, capture_left + min_x - padding)
+        game_top = max(capture_top, capture_top + min_y - padding)
+        game_right = min(right, capture_left + max_x + padding)
+        game_bottom = min(bottom, capture_top + max_y + padding)
 
         game_width = game_right - game_left
         game_height = game_bottom - game_top
