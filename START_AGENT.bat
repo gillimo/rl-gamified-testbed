@@ -56,12 +56,12 @@ echo.
 cd /d %PROJECT_DIR%\pokemon_yellow_rl
 call C:\Users\gilli\.venv\Scripts\activate.bat
 
-:: Start Weight Editor GUI in background
+:: Start Weight Editor GUI in background (pythonw = no console window)
 echo Starting Weight Editor GUI...
-start "Weight Editor" python -m gui.weight_editor
+start "" pythonw -m gui.weight_editor
 
 :: Wait a moment for GUI to open
-timeout /t 1 /nobreak >nul
+timeout /t 2 /nobreak >nul
 
 :: Run PPO agent (replaces broken REINFORCE)
 python -u train_ppo.py
