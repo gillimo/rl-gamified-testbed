@@ -23,6 +23,7 @@ if sys.platform == 'win32':
 
 import numpy as np
 import torch
+from tqdm import tqdm
 from stable_baselines3 import PPO
 from stable_baselines3.common.callbacks import BaseCallback, CheckpointCallback
 from stable_baselines3.common.logger import configure
@@ -52,15 +53,12 @@ class Colors:
 
 
 class PokemonTrainingCallback(BaseCallback):
-    """Custom callback for Pokemon-specific training diagnostics.
+    """Custom callback with tqdm progress bar that updates in place."""
 
-    Prints heartbeat every 100 steps and summary at episode end.
-    """
-
-    def __init__(self, trainer_stats: TrainerStats, print_freq: int = 100, verbose: int = 1):
+    def __init__(self, trainer_stats: TrainerStats, total_timesteps: int, verbose: int = 1):
         super().__init__(verbose)
         self.trainer_stats = trainer_stats
-        self.print_freq = print_freq
+        self.total_timesteps = total_timesteps
 
         # Episode tracking
         self.episode_rewards = []
@@ -69,12 +67,25 @@ class PokemonTrainingCallback(BaseCallback):
         self.current_episode_length = 0
         self.reward_breakdown_totals = {cat: 0.0 for cat in REWARD_CATEGORIES}
 
-        # Heartbeat tracking
-        self.last_print_step = 0
-        self.interval_reward = 0.0
+        # tqdm progress bar (created on first step)
+        self.pbar = None
+
+    def _on_training_start(self) -> None:
+        """Called when training starts."""
+        self.pbar = tqdm(
+            total=self.total_timesteps,
+            desc="Training",
+            unit="step",
+            dynamic_ncols=True,
+            bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}] {postfix}"
+        )
 
     def _on_step(self) -> bool:
         """Called after every step."""
+        # Update progress bar
+        if self.pbar:
+            self.pbar.update(1)
+
         # Get info from the environment
         infos = self.locals.get("infos", [{}])
         rewards = self.locals.get("rewards", [0])
@@ -83,7 +94,6 @@ class PokemonTrainingCallback(BaseCallback):
         for info, reward, done in zip(infos, rewards, dones):
             self.current_episode_reward += reward
             self.current_episode_length += 1
-            self.interval_reward += reward
 
             # Track breakdown if available
             breakdown = info.get("reward_breakdown", {})
@@ -96,76 +106,29 @@ class PokemonTrainingCallback(BaseCallback):
                 self.trainer_stats.add_episode_reward(self.current_episode_reward)
                 self.trainer_stats.finish_episode(info)
 
-                # Print episode summary
-                self._print_episode_summary()
-
                 # Reset episode tracking
                 self.current_episode_reward = 0.0
                 self.current_episode_length = 0
                 self.reward_breakdown_totals = {cat: 0.0 for cat in REWARD_CATEGORIES}
-                self.interval_reward = 0.0
 
-        # Heartbeat every print_freq steps
-        if self.num_timesteps - self.last_print_step >= self.print_freq:
-            self._print_heartbeat()
-            self.last_print_step = self.num_timesteps
-            self.interval_reward = 0.0
+        # Update progress bar postfix with stats
+        if self.pbar and self.num_timesteps % 100 == 0:
+            avg_reward = np.mean(self.episode_rewards[-10:]) if self.episode_rewards else 0
+            trainer_level = self.trainer_stats.get_trainer_level()
+            self.pbar.set_postfix({
+                'Ep': len(self.episode_rewards),
+                'Reward': f'{self.current_episode_reward:.0f}',
+                'Avg': f'{avg_reward:.0f}',
+                'Lv': trainer_level
+            })
 
         return True
 
-    def _print_heartbeat(self):
-        """Print progress heartbeat every N steps."""
-        avg_reward = np.mean(self.episode_rewards[-10:]) if self.episode_rewards else 0
-        trainer_level = self.trainer_stats.get_trainer_level()
+    def _on_training_end(self) -> None:
+        """Called when training ends."""
+        if self.pbar:
+            self.pbar.close()
 
-        print(f"  {Colors.DIM}[{self.num_timesteps:>7,}]{Colors.RESET} "
-              f"Ep {len(self.episode_rewards):>3} │ "
-              f"Reward: {Colors.ELECTRIC}{self.current_episode_reward:>7.0f}{Colors.RESET} │ "
-              f"+{self.interval_reward:>5.0f} │ "
-              f"Lv {Colors.YELLOW}{trainer_level}{Colors.RESET}")
-
-    def _print_episode_summary(self):
-        """Print summary at end of each episode."""
-        avg_reward = np.mean(self.episode_rewards[-10:]) if self.episode_rewards else 0
-        trainer_level = self.trainer_stats.get_trainer_level()
-        ep_num = len(self.episode_rewards)
-
-        print(f"\n  {Colors.CYAN}═══ Episode {ep_num} Complete ═══{Colors.RESET}")
-        print(f"  Reward: {Colors.ELECTRIC}{self.episode_rewards[-1]:>8.1f}{Colors.RESET} │ "
-              f"Avg(10): {Colors.WHITE}{avg_reward:>8.1f}{Colors.RESET} │ "
-              f"Trainer Lv: {Colors.YELLOW}{trainer_level}{Colors.RESET}\n")
-
-    def _on_rollout_end(self) -> None:
-        """Called when a rollout (n_steps) completes."""
-        # Print detailed diagnostics after each PPO update
-        if self.verbose > 0 and len(self.episode_rewards) > 0:
-            print()  # New line after heartbeat
-            self._print_diagnostics()
-
-    def _print_diagnostics(self):
-        """Print model diagnostics after PPO update."""
-        trainer_level = self.trainer_stats.get_trainer_level()
-        avg_reward = np.mean(self.episode_rewards[-10:]) if self.episode_rewards else 0
-        avg_length = np.mean(self.episode_lengths[-10:]) if self.episode_lengths else 0
-
-        # Get value/policy metrics from logger
-        entropy = self.logger.name_to_value.get("train/entropy_loss", 0)
-        value_loss = self.logger.name_to_value.get("train/value_loss", 0)
-        policy_loss = self.logger.name_to_value.get("train/policy_gradient_loss", 0)
-        clip_fraction = self.logger.name_to_value.get("train/clip_fraction", 0)
-
-        print(f"\n  {Colors.PURPLE}╔{'═'*60}╗{Colors.RESET}")
-        print(f"  {Colors.PURPLE}║{Colors.RESET}  {Colors.BOLD}PPO UPDATE - Step {self.num_timesteps:,}{Colors.RESET}                              {Colors.PURPLE}║{Colors.RESET}")
-        print(f"  {Colors.PURPLE}╠{'═'*60}╣{Colors.RESET}")
-        print(f"  {Colors.PURPLE}║{Colors.RESET}  Trainer Level: {Colors.YELLOW}{trainer_level:>3}{Colors.RESET}      Episodes: {Colors.WHITE}{len(self.episode_rewards):>5}{Colors.RESET}              {Colors.PURPLE}║{Colors.RESET}")
-        print(f"  {Colors.PURPLE}║{Colors.RESET}  Avg Reward (10ep): {Colors.ELECTRIC}{avg_reward:>10.1f}{Colors.RESET}                          {Colors.PURPLE}║{Colors.RESET}")
-        print(f"  {Colors.PURPLE}║{Colors.RESET}  Avg Length (10ep): {Colors.WHITE}{avg_length:>10.0f}{Colors.RESET}                          {Colors.PURPLE}║{Colors.RESET}")
-        print(f"  {Colors.PURPLE}╠{'═'*60}╣{Colors.RESET}")
-        print(f"  {Colors.PURPLE}║{Colors.RESET}  {Colors.DIM}Policy Loss:{Colors.RESET}  {policy_loss:>10.4f}                              {Colors.PURPLE}║{Colors.RESET}")
-        print(f"  {Colors.PURPLE}║{Colors.RESET}  {Colors.DIM}Value Loss:{Colors.RESET}   {value_loss:>10.4f}                              {Colors.PURPLE}║{Colors.RESET}")
-        print(f"  {Colors.PURPLE}║{Colors.RESET}  {Colors.DIM}Entropy:{Colors.RESET}      {abs(entropy):>10.4f}                              {Colors.PURPLE}║{Colors.RESET}")
-        print(f"  {Colors.PURPLE}║{Colors.RESET}  {Colors.DIM}Clip Frac:{Colors.RESET}    {clip_fraction:>10.4f}                              {Colors.PURPLE}║{Colors.RESET}")
-        print(f"  {Colors.PURPLE}╚{'═'*60}╝{Colors.RESET}")
 
 
 def calculate_episode_steps(trainer_level: int) -> int:
@@ -247,14 +210,18 @@ def main():
             ent_coef=0.01,          # Entropy bonus for exploration
             vf_coef=0.5,            # Value function coefficient
             max_grad_norm=0.5,      # Gradient clipping
-            verbose=1,
+            verbose=0,              # Disable SB3's own logging (we have custom callback)
             tensorboard_log=str(logs_dir),
             device="auto",
         )
         model.set_logger(logger)
 
     # Create callbacks
-    training_callback = PokemonTrainingCallback(trainer_stats=stats, print_freq=100, verbose=1)
+    training_callback = PokemonTrainingCallback(
+        trainer_stats=stats,
+        total_timesteps=args.total_timesteps,
+        verbose=1
+    )
 
     checkpoint_callback = CheckpointCallback(
         save_freq=5000,
