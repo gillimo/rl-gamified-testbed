@@ -52,27 +52,23 @@ class Colors:
 
 
 class PokemonTrainingCallback(BaseCallback):
-    """Custom callback for Pokemon-specific training diagnostics."""
+    """Custom callback for Pokemon-specific training diagnostics.
 
-    def __init__(
-        self,
-        trainer_stats: TrainerStats,
-        print_freq: int = 100,
-        verbose: int = 1,
-    ):
+    Prints summary at end of each episode and after each PPO update.
+    """
+
+    def __init__(self, trainer_stats: TrainerStats, verbose: int = 1):
         super().__init__(verbose)
         self.trainer_stats = trainer_stats
-        self.print_freq = print_freq
 
-        # Tracking
+        # Episode tracking
         self.episode_rewards = []
         self.episode_lengths = []
         self.current_episode_reward = 0.0
         self.current_episode_length = 0
         self.reward_breakdown_totals = {cat: 0.0 for cat in REWARD_CATEGORIES}
 
-        # Heartbeat display
-        self.last_print_step = 0
+        # Interval tracking (for PPO update summaries)
         self.interval_reward = 0.0
         self.interval_max_gain = 0.0
         self.interval_max_loss = 0.0
@@ -106,40 +102,30 @@ class PokemonTrainingCallback(BaseCallback):
                 self.trainer_stats.add_episode_reward(self.current_episode_reward)
                 self.trainer_stats.finish_episode(info)
 
+                # Print episode summary (only on episode end)
+                self._print_episode_summary()
+
                 # Reset episode tracking
                 self.current_episode_reward = 0.0
                 self.current_episode_length = 0
                 self.reward_breakdown_totals = {cat: 0.0 for cat in REWARD_CATEGORIES}
-
-        # Heartbeat display
-        if self.num_timesteps - self.last_print_step >= self.print_freq:
-            self._print_heartbeat()
-            self.last_print_step = self.num_timesteps
-            self.interval_reward = 0.0
-            self.interval_max_gain = 0.0
-            self.interval_max_loss = 0.0
+                self.interval_reward = 0.0
+                self.interval_max_gain = 0.0
+                self.interval_max_loss = 0.0
 
         return True
 
-    def _print_heartbeat(self):
-        """Print training progress heartbeat."""
-        # Get model diagnostics
-        if hasattr(self.model, 'policy') and self.model.policy is not None:
-            entropy = self.logger.name_to_value.get("train/entropy_loss", 0)
-            value_loss = self.logger.name_to_value.get("train/value_loss", 0)
-            policy_loss = self.logger.name_to_value.get("train/policy_gradient_loss", 0)
-        else:
-            entropy = value_loss = policy_loss = 0
-
+    def _print_episode_summary(self):
+        """Print summary at end of each episode (not every step)."""
         avg_reward = np.mean(self.episode_rewards[-10:]) if self.episode_rewards else 0
         trainer_level = self.trainer_stats.get_trainer_level()
+        ep_num = len(self.episode_rewards)
 
-        print(f"\r  {Colors.CYAN}Step {self.num_timesteps:>7,}{Colors.RESET} │ "
-              f"Ep: {len(self.episode_rewards):>4} │ "
-              f"Avg Reward: {Colors.ELECTRIC}{avg_reward:>8.1f}{Colors.RESET} │ "
-              f"Trainer Lv: {Colors.YELLOW}{trainer_level}{Colors.RESET} │ "
-              f"Interval: {Colors.GREEN if self.interval_reward > 0 else Colors.RED}{self.interval_reward:>+8.1f}{Colors.RESET}",
-              end='', flush=True)
+        print(f"  {Colors.CYAN}Episode {ep_num:>4}{Colors.RESET} │ "
+              f"Steps: {self.num_timesteps:>7,} │ "
+              f"Reward: {Colors.ELECTRIC}{self.episode_rewards[-1]:>8.1f}{Colors.RESET} │ "
+              f"Avg(10): {Colors.WHITE}{avg_reward:>8.1f}{Colors.RESET} │ "
+              f"Trainer Lv: {Colors.YELLOW}{trainer_level}{Colors.RESET}")
 
     def _on_rollout_end(self) -> None:
         """Called when a rollout (n_steps) completes."""
@@ -260,11 +246,7 @@ def main():
         model.set_logger(logger)
 
     # Create callbacks
-    training_callback = PokemonTrainingCallback(
-        trainer_stats=stats,
-        print_freq=100,
-        verbose=1,
-    )
+    training_callback = PokemonTrainingCallback(trainer_stats=stats, verbose=1)
 
     checkpoint_callback = CheckpointCallback(
         save_freq=5000,
