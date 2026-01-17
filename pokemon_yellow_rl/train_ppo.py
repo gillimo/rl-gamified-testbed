@@ -74,9 +74,10 @@ class PokemonTrainingCallback(BaseCallback):
         """Called when training starts."""
         self.pbar = tqdm(
             total=self.total_timesteps,
-            desc="Training",
+            desc=f"{Colors.YELLOW}⚡ Training{Colors.RESET}",
             unit="step",
             dynamic_ncols=True,
+            colour="yellow",
             bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}] {postfix}"
         )
 
@@ -106,21 +107,35 @@ class PokemonTrainingCallback(BaseCallback):
                 self.trainer_stats.add_episode_reward(self.current_episode_reward)
                 self.trainer_stats.finish_episode(info)
 
+                # Print colorful episode summary (tqdm.write doesn't break the bar)
+                ep_num = len(self.episode_rewards)
+                avg = np.mean(self.episode_rewards[-10:]) if len(self.episode_rewards) >= 10 else self.episode_rewards[-1]
+                trainer_lv = self.trainer_stats.get_trainer_level()
+                tqdm.write(
+                    f"  {Colors.CYAN}═══ Episode {ep_num} ═══{Colors.RESET} "
+                    f"Reward: {Colors.ELECTRIC}{self.episode_rewards[-1]:>7.0f}{Colors.RESET} │ "
+                    f"Avg: {Colors.WHITE}{avg:>6.0f}{Colors.RESET} │ "
+                    f"Lv: {Colors.YELLOW}{trainer_lv}{Colors.RESET}"
+                )
+
                 # Reset episode tracking
                 self.current_episode_reward = 0.0
                 self.current_episode_length = 0
                 self.reward_breakdown_totals = {cat: 0.0 for cat in REWARD_CATEGORIES}
 
-        # Update progress bar postfix with stats
+        # Update progress bar postfix with colorful stats
         if self.pbar and self.num_timesteps % 100 == 0:
             avg_reward = np.mean(self.episode_rewards[-10:]) if self.episode_rewards else 0
             trainer_level = self.trainer_stats.get_trainer_level()
-            self.pbar.set_postfix({
-                'Ep': len(self.episode_rewards),
-                'Reward': f'{self.current_episode_reward:.0f}',
-                'Avg': f'{avg_reward:.0f}',
-                'Lv': trainer_level
-            })
+
+            # Colorful postfix string
+            postfix = (
+                f"{Colors.CYAN}Ep:{Colors.WHITE}{len(self.episode_rewards):>3}{Colors.RESET} │ "
+                f"{Colors.GREEN}Reward:{Colors.ELECTRIC}{self.current_episode_reward:>7.0f}{Colors.RESET} │ "
+                f"{Colors.DIM}Avg:{Colors.WHITE}{avg_reward:>6.0f}{Colors.RESET} │ "
+                f"{Colors.PURPLE}Lv:{Colors.YELLOW}{trainer_level}{Colors.RESET}"
+            )
+            self.pbar.set_postfix_str(postfix)
 
         return True
 
