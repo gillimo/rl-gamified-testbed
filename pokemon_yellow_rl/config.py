@@ -11,19 +11,20 @@ STARTER_LEVEL = 5
 STARTER_NICKNAME = "GASTLY"  # Optional
 
 # Training Parameters (Roguelite Mode)
-BASE_STEPS_PER_EPISODE = 5000   # Starting steps
-STEPS_MULTIPLIER = 1.15         # Multiply steps by this per level (exponential)
-MAX_STEPS_CAP = 500000          # Cap to prevent runaway episodes
+# Level 1 = 1,000 steps, Level 100 = ~2.7M steps (2x game completion)
+BASE_STEPS_PER_EPISODE = 1000   # Starting steps at level 1
+STEPS_MULTIPLIER = 1.083        # Exponential growth per trainer level
+MAX_STEPS_CAP = 3000000         # Cap at level 100+
 
 EPSILON_START = 0.5  # Exploration rate at start
 EPSILON_END = 0.1    # Minimum exploration rate
 EPSILON_DECAY = 0.995
 
 # Network Parameters
-STATE_SIZE = 128
+STATE_SIZE = 140  # Updated to include spatial awareness features
 ACTION_SIZE = 8
 HIDDEN_SIZE = 256
-LEARNING_RATE = 1e-3
+LEARNING_RATE = 3e-4  # Lower learning rate for PPO stability
 
 # Experience Replay
 BUFFER_SIZE = 10000

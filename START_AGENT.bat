@@ -52,9 +52,18 @@ echo STARTING RL AGENT
 echo ========================================
 echo.
 
-:: Activate virtual environment and run RL agent
+:: Activate virtual environment
 cd /d %PROJECT_DIR%\pokemon_yellow_rl
 call C:\Users\gilli\.venv\Scripts\activate.bat
-python -u train_rl.py
+
+:: Start Weight Editor GUI in background
+echo Starting Weight Editor GUI...
+start "Weight Editor" python -m gui.weight_editor
+
+:: Wait a moment for GUI to open
+timeout /t 1 /nobreak >nul
+
+:: Run PPO agent (replaces broken REINFORCE)
+python -u train_ppo.py
 
 pause
