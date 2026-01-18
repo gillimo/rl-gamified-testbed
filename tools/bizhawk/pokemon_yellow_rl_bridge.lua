@@ -44,6 +44,8 @@ local mem_editor = dofile("C:/Users/gilli/OneDrive/Desktop/projects/pokemon_yell
 
 local last_input_id = ""
 local last_reset_id = ""
+local last_text_box_id = 0
+local last_menu_item = 0
 
 -- Helper: Read 2-byte little-endian
 local function read_u16(addr)
@@ -267,16 +269,16 @@ end
 
 local function process_input()
   local file = io.open(input_path, "r")
-  if not file then return end
+  if not file then return false end
   local content = file:read("*all")
   file:close()
-  if not content or content == "" then return end
+  if not content or content == "" then return false end
 
   local id = content:match('"id"%s*:%s*"([^"]*)"')
   local button = content:match('"button"%s*:%s*"([^"]*)"')
   local frames = tonumber(content:match('"frames"%s*:%s*(%d+)')) or 4
 
-  if not id or id == last_input_id or not button then return end
+  if not id or id == last_input_id or not button then return false end
   last_input_id = id
 
   local btn_map = {
@@ -284,7 +286,9 @@ local function process_input()
     UP="Up", DOWN="Down", LEFT="Left", RIGHT="Right"
   }
   local mapped = btn_map[button:upper()]
-  if not mapped then return end
+  if not mapped then return false end
+
+  print(string.format("[INPUT] id=%s button=%s frames=%d", id, mapped, frames))
 
   for i = 1, frames do
     joypad.set({[mapped] = true})
@@ -293,6 +297,26 @@ local function process_input()
 
   local clear = io.open(input_path, "w")
   if clear then clear:write(""); clear:close() end
+  return true
+end
+
+local function process_autoinput()
+  local text_box_id = memory.read_u8(ADDR.TEXT_BOX)
+  local menu_item = memory.read_u8(ADDR.MENU_ITEM)
+
+  if text_box_id > 0 and text_box_id ~= last_text_box_id then
+    last_text_box_id = text_box_id
+    joypad.set({A = true})
+    print(string.format("[AUTO INPUT] text_box_id=%d -> A", text_box_id))
+    return true
+  end
+
+  if text_box_id == 0 then
+    last_text_box_id = 0
+  end
+
+  last_menu_item = menu_item
+  return false
 end
 
 local function process_reset()
@@ -328,7 +352,10 @@ print("Save state reset ENABLED")
 local frame_count = 0
 while true do
   write_state()
-  process_input()
+  local handled = process_input()
+  if not handled then
+    process_autoinput()
+  end
   process_reset()
   mem_editor.process_edits()
 

@@ -7,3 +7,8 @@
 - 2026-01-15 Codex: Emulator state snapshot: map_id=0 pos=(0,0) in_battle=0 timestamp=2026-01-15T03:03:31Z.
 - 2026-01-15 Codex: Added force_focus_window retries for BizHawk focus recovery.
 - 2026-01-15 Codex: Added click-to-focus fallback in agent loop when BizHawk focus fails.
+- 2026-01-17 Codex: Intake of PPO run output and requested UI/training adjustments (steps, confidence display, heartbeat level, window layout, penalties/menu behavior).
+- 2026-01-17 Codex: Over-tuned PPO entropy and reward density for RL training adjustments.
+- 2026-01-17 Codex: Raised PPO entropy floor to prevent action collapse.
+- 2026-01-17 Codex: Added distance-from-start exploration shaping and leave-start-map curriculum to push early outward movement.
+- 2026-01-17 Codex: Enabled early-level hot/cold shaping toward Pokemon Centers to force outward movement before level 5.
