@@ -1,7 +1,7 @@
 {
     "enabled": true,
     "new_tile_reward": 1.0,
-    "repeat_penalty": 0.5,
+    "repeat_penalty": 0.1,
     "door_min_reward": 1.0,
     "door_max_reward": 40.0,
     "door_distance_max": 30.0,
@@ -13,5 +13,6 @@
     "poi_cooldown_seconds": 300.0,
     "pc_text_ids": [],
     "pc_cooldown_seconds": 300.0,
-    "gravity_delta_scale": 1.0
+    "gravity_delta_scale": 1.0,
+    "lava_trigger_seconds": 10.0
 }

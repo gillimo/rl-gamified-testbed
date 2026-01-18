@@ -127,6 +127,10 @@ class PokemonTrainingCallback(BaseCallback):
         self.last_progress_index = 0.0
         self.avg_reward_ema = None
         self.prev_avg_reward_ema = None
+        self.episode_return_ema = None
+        self.prev_episode_return_ema = None
+        self.policy_index = 0.0
+        self.policy_index_sign = 0
         self.index_green_count = 0
         self.index_red_count = 0
         self.index_green_mag = 0.0
@@ -448,19 +452,8 @@ class PokemonTrainingCallback(BaseCallback):
             f"{avg_color}{avg_sign}{avg_delta:>7,.1f}{Colors.CYAN}",
             1,
         )
-        ema_delta = self.avg_reward_ema - self.prev_avg_reward_ema
-        progress_index_raw = (ema_delta / max(abs(self.prev_avg_reward_ema), 1.0)) * 100.0
-        if abs(progress_index_raw) > 0.01:
-            self.last_progress_index = progress_index_raw
-        progress_index = self.last_progress_index
-        progress_sign = 1 if progress_index > 0.01 else -1 if progress_index < -0.01 else 0
-        if progress_sign == 0:
-            pass
-        elif progress_sign != self.progress_streak_sign:
-            self.progress_streak_sign = progress_sign
-            self.progress_streak = 1
-        else:
-            self.progress_streak += 1
+        progress_index = self.policy_index
+        progress_sign = self.policy_index_sign
         if progress_sign > 0:
             streak_label = 'POS'
             streak_color = Colors.ELECTRIC if self.progress_streak >= 200 else Colors.GREEN
@@ -470,12 +463,6 @@ class PokemonTrainingCallback(BaseCallback):
         else:
             streak_label = 'NEUT'
             streak_color = Colors.WHITE
-        if progress_sign > 0:
-            self.index_green_count += 1
-            self.index_green_mag += abs(progress_index)
-        elif progress_sign < 0:
-            self.index_red_count += 1
-            self.index_red_mag += abs(progress_index)
         if progress_index > 0.01:
             trend_label = f"{Colors.GREEN}IMPROVING{Colors.CYAN}"
         elif progress_index < -0.01:
@@ -645,6 +632,35 @@ class PokemonTrainingCallback(BaseCallback):
         self.prev_episode_reward = r
         self.prev_avg10 = avg10
         self.prev_avg_all = avg_all
+
+        # Update policy-improvement index from episode returns (long-horizon EMA)
+        if self.episode_return_ema is None:
+            self.episode_return_ema = r
+        else:
+            alpha = 0.1
+            self.episode_return_ema = (alpha * r) + ((1 - alpha) * self.episode_return_ema)
+        if self.prev_episode_return_ema is None:
+            self.prev_episode_return_ema = self.episode_return_ema
+        ema_delta = self.episode_return_ema - self.prev_episode_return_ema
+        progress_index_raw = (ema_delta / max(abs(self.prev_episode_return_ema), 1.0)) * 100.0
+        if abs(progress_index_raw) > 0.01:
+            self.last_progress_index = progress_index_raw
+        self.policy_index = self.last_progress_index
+        self.policy_index_sign = 1 if self.policy_index > 0.01 else -1 if self.policy_index < -0.01 else 0
+        if self.policy_index_sign == 0:
+            pass
+        elif self.policy_index_sign != self.progress_streak_sign:
+            self.progress_streak_sign = self.policy_index_sign
+            self.progress_streak = 1
+        else:
+            self.progress_streak += 1
+        if self.policy_index_sign > 0:
+            self.index_green_count += 1
+            self.index_green_mag += abs(self.policy_index)
+        elif self.policy_index_sign < 0:
+            self.index_red_count += 1
+            self.index_red_mag += abs(self.policy_index)
+        self.prev_episode_return_ema = self.episode_return_ema
 
     def _record_episode_split(self, reward: float) -> None:
         """Classify episode outcome relative to last 10 episodes."""

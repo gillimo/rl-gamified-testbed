@@ -47,6 +47,8 @@ class GravityMap:
         self.current_map_id: Optional[int] = None
         self.entry_door_pos: Optional[Tuple[int, int]] = None
         self.steps_in_room = 0
+        self.lava_mode_active = False
+        self.last_positive_time = time.time()
 
     def reset(self) -> None:
         self.doors_per_map.clear()
@@ -55,6 +57,8 @@ class GravityMap:
         self.current_map_id = None
         self.entry_door_pos = None
         self.steps_in_room = 0
+        self.lava_mode_active = False
+        self.last_positive_time = time.time()
 
     def reload_config(self) -> None:
         try:
@@ -178,7 +182,18 @@ class GravityMap:
             self.visited_tiles[curr_map].add(curr_pos)
             reward += new_tile_reward
         else:
-            reward -= repeat_penalty
+            # Apply repeat penalty only when lava mode is active.
+            if self.lava_mode_active:
+                reward -= repeat_penalty
+
+        # Update lava mode trigger based on last positive reward.
+        if reward > 0:
+            self.last_positive_time = time.time()
+            self.lava_mode_active = False
+        else:
+            trigger_seconds = float(self.config.get("lava_trigger_seconds", 10.0))
+            if (time.time() - self.last_positive_time) >= trigger_seconds:
+                self.lava_mode_active = True
 
         return reward
 

@@ -85,6 +85,8 @@ class RewardCalculator:
         self.weights = load_weights()
         self.weights_mtime = WEIGHTS_PATH.stat().st_mtime if WEIGHTS_PATH.exists() else 0
         self.gravity_map = GravityMap()
+        self.first_grass_reached = False
+        self.left_start_map = False
 
         # Exploration tracking
         self.visited_tiles: Set[Tuple[int, int, int]] = set()  # (map, x, y)
@@ -206,7 +208,7 @@ class RewardCalculator:
                     return True
         return False
 
-    def calculate_reward(self, prev_state: Dict, curr_state: Dict, return_breakdown: bool = False):
+    def calculate_reward(self, prev_state: Dict, curr_state: Dict, return_breakdown: bool = False, episode_level: Optional[int] = None):
         """Calculate reward from state transition.
 
         Args:
@@ -248,6 +250,8 @@ class RewardCalculator:
         self.gravity_map.update(prev_state, curr_state)
         gravity_reward = self.gravity_map.compute_reward(prev_state, curr_state)
         if self.gravity_map.config.get("enabled", True):
+            self.lava_mode_active = self.gravity_map.lava_mode_active
+            self.last_positive_reward_time = self.gravity_map.last_positive_time
             breakdown['exploration'] += gravity_reward
             if return_breakdown:
                 return gravity_reward, breakdown
@@ -605,3 +609,5 @@ class RewardCalculator:
 
         # Reset dynamic gravity curriculum
         self.gravity_map.reset()
+        self.first_grass_reached = False
+        self.left_start_map = False
