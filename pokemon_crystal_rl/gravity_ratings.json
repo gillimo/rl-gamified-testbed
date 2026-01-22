@@ -1,0 +1,15 @@
+{
+    "enabled": false,
+    "door_value": 10.0,
+    "door_negative_steps": 20,
+    "door_tile_ids": [4, 21, 26, 27, 28, 30, 52, 56, 58, 59, 67, 83, 84, 88, 94],
+    "door_tile_ids_by_tileset": {},
+    "pc_value": 15.0,
+    "pc_cooldown_steps": 900,
+    "person_value": 25.0,
+    "grass_value": 15.0,
+    "grass_tile_ids": [],
+    "grass_tile_ids_by_tileset": {},
+    "pc_text_ids": [],
+    "gravity_delta_scale": 1.0
+}
