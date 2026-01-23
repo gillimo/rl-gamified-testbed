@@ -644,7 +644,8 @@ class PokemonTrainingCallback(BaseCallback):
 
         bar_filled = pct // 5
 
-        bar = 'â–ˆ' * bar_filled + 'â–‘' * (20 - bar_filled)
+        # Use ASCII for stable width across terminals.
+        bar = '#' * bar_filled + '-' * (20 - bar_filled)
 
 
 
@@ -1056,19 +1057,17 @@ class PokemonTrainingCallback(BaseCallback):
 
 
 
-        # Move cursor up if we've printed before (to overwrite)
-
+        # Clear previous heartbeat box area.
         if self.heartbeat_printed:
-
-            # Move up one extra line to fully overwrite the previous box.
-            sys.stdout.write(f"\033[{len(lines) + 1}A")
-
-
+            # Clear a fixed range that covers the previous box and any trailing lines.
+            clear_lines = len(lines) + 6
+            sys.stdout.write(f"\033[{clear_lines}A")
+            for _ in range(clear_lines):
+                sys.stdout.write("\033[2K\r\n")
+            sys.stdout.write(f"\033[{clear_lines}A")
 
         # Print all lines (clear each line to avoid residual text)
-
         for line in lines:
-
             sys.stdout.write(f"\033[2K\r{Colors.CYAN}{line}{Colors.RESET}\n")
 
 

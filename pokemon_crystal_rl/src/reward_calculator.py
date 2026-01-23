@@ -1,6 +1,7 @@
 """Reward Calculator - Pokemon Crystal RL with Floor is Lava, Battle Rewards, HM Detection"""
 import json
 import time
+import hashlib
 from pathlib import Path
 from typing import Dict, Set, Tuple, Optional
 
@@ -54,6 +55,7 @@ HM_MOVES = {
 
 # Weights file path (relative to this module)
 WEIGHTS_PATH = Path(__file__).parent.parent / "weights.json"
+REWARD_LOG_PATH = Path(__file__).parent.parent / "logs" / "reward_trace.jsonl"
 
 
 def load_weights() -> Dict:
@@ -90,7 +92,7 @@ class RewardCalculator:
         self.left_start_map = False
 
         # Exploration tracking
-        self.visited_tiles: Set[Tuple[int, int, int]] = set()  # (map, x, y)
+        self.visited_tiles: Set[Tuple[object, int, int]] = set()  # (map_key, x, y)
         self.visited_buildings: Set[int] = set()  # map IDs
 
         # Dialogue tracking
@@ -159,8 +161,10 @@ class RewardCalculator:
         self.max_badges = badges
         self.max_pokedex_owned = pokedex
 
-        self.visited_buildings.add(state.get('map', 0))
-        curr_pos = (state.get('map', 0), state.get('x', 0), state.get('y', 0))
+        map_key = self._map_key(state)
+        self.visited_buildings.add(map_key)
+        curr_map, curr_x, curr_y = self._sanitize_position(state)
+        curr_pos = (map_key, curr_x, curr_y)
         self.visited_tiles.add(curr_pos)
         self.initialized = True
         self.last_positive_reward_time = time.time()
@@ -177,11 +181,38 @@ class RewardCalculator:
             min_dist = min(min_dist, dist)
         return min_dist if min_dist != float('inf') else 50.0
 
+    def _map_key(self, state: Dict):
+        """Use stable map identifiers when available to avoid map-id jitter."""
+        map_group = state.get("map_group")
+        map_number = state.get("map_number")
+        if isinstance(map_group, int) and isinstance(map_number, int):
+            return (map_group, map_number)
+        return int(state.get("map", 0))
+
+    def _sanitize_position(self, state: Dict) -> Tuple[int, int, int]:
+        """Clamp position to map bounds when available to avoid runaway rewards."""
+        map_id = int(state.get("map", 0))
+        x = int(state.get("x", 0))
+        y = int(state.get("y", 0))
+        width = state.get("map_width")
+        height = state.get("map_height")
+        if isinstance(width, int) and isinstance(height, int) and 0 < width <= 100 and 0 < height <= 100:
+            x = max(0, min(x, width - 1))
+            y = max(0, min(y, height - 1))
+        return map_id, x, y
+
     def _is_garbage_state(self, state: Dict) -> bool:
         """Check if state looks like garbage memory."""
         badges = state.get('badges', 0)
         pokedex = state.get('pokedex_owned', 0)
         party_count = state.get('party_count', 0)
+        map_group = state.get('map_group')
+        map_number = state.get('map_number')
+        map_id = state.get('map', 0)
+        x = state.get('x', 0)
+        y = state.get('y', 0)
+        width = state.get('map_width')
+        height = state.get('map_height')
 
         if party_count < 0 or party_count > 6:
             return True
@@ -189,6 +220,16 @@ class RewardCalculator:
             return True
         if party_count > 0 and pokedex > party_count + 10:
             return True
+        # Map identifiers should not drop to zero in a valid room.
+        if isinstance(map_group, int) and isinstance(map_number, int):
+            if map_group == 0 and map_number == 0:
+                return True
+        elif map_id == 0:
+            return True
+        # Coordinates should stay within the reported map bounds.
+        if isinstance(width, int) and isinstance(height, int) and width > 0 and height > 0:
+            if x < 0 or y < 0 or x >= width or y >= height:
+                return True
         return False
 
     def _party_has_move(self, state: Dict, move_id: int) -> bool:
@@ -248,31 +289,30 @@ class RewardCalculator:
                     return 0.0, breakdown
                 return 0.0
 
-        # Dynamic gravity curriculum (disabled for flat exploration rewards)
-        use_minimal_rewards = episode_level is not None and episode_level < 6
-        if not use_minimal_rewards:
+        # Gravity is permanently disabled for this training run.
+        gravity_enabled = False
+        if gravity_enabled and self.gravity_map.config.get("enabled", False):
             self.gravity_map.update(prev_state, curr_state, action=action)
             gravity_reward = self.gravity_map.compute_reward(prev_state, curr_state)
 
-            if self.gravity_map.config.get("enabled", False):
-                prev_map = prev_state.get("map", 0)
-                curr_map = curr_state.get("map", 0)
-                prev_x = prev_state.get("x", 0)
-                prev_y = prev_state.get("y", 0)
-                curr_x = curr_state.get("x", 0)
-                curr_y = curr_state.get("y", 0)
-                prev_value = self.gravity_map.compute_position_value(prev_map, prev_x, prev_y)
-                curr_value = self.gravity_map.compute_position_value(curr_map, curr_x, curr_y)
-                self.last_gravity_metrics = {
-                    "prev_value": prev_value,
-                    "curr_value": curr_value,
-                    "reward": gravity_reward,
-                    "door_count": len(self.gravity_map.doors_per_map.get(curr_map, [])),
-                    "poi_count": len(self.gravity_map.pois_per_map.get(curr_map, {})),
-                }
-                self.lava_mode_active = self.gravity_map.lava_mode_active
-                self.last_positive_reward_time = self.gravity_map.last_positive_time
-                breakdown['exploration'] += gravity_reward
+            prev_map = prev_state.get("map", 0)
+            curr_map = curr_state.get("map", 0)
+            prev_x = prev_state.get("x", 0)
+            prev_y = prev_state.get("y", 0)
+            curr_x = curr_state.get("x", 0)
+            curr_y = curr_state.get("y", 0)
+            prev_value = self.gravity_map.compute_position_value(prev_map, prev_x, prev_y)
+            curr_value = self.gravity_map.compute_position_value(curr_map, curr_x, curr_y)
+            self.last_gravity_metrics = {
+                "prev_value": prev_value,
+                "curr_value": curr_value,
+                "reward": gravity_reward,
+                "door_count": len(self.gravity_map.doors_per_map.get(curr_map, [])),
+                "poi_count": len(self.gravity_map.pois_per_map.get(curr_map, {})),
+            }
+            self.lava_mode_active = self.gravity_map.lava_mode_active
+            self.last_positive_reward_time = self.gravity_map.last_positive_time
+            breakdown['exploration'] += gravity_reward
 
         w = self.weights
         noise_cfg = w.get("noise_curriculum", {})
@@ -288,38 +328,28 @@ class RewardCalculator:
         lava_cfg = w.get('lava_mode', {})
         trigger_seconds = lava_cfg.get('trigger_seconds', 30)
 
-        if use_minimal_rewards:
-            self.lava_mode_active = False
-        else:
-            time_since_positive = time.time() - self.last_positive_reward_time
-            if time_since_positive > trigger_seconds and not self.lava_mode_active:
-                self.lava_mode_active = True
-                self.lava_tile_visits.clear()
-                print(f"  {C.RED}{C.BOLD}[LAVA MODE] ACTIVATED{C.RESET}{C.RED} - No positive reward for {trigger_seconds}s!{C.RESET}")
+        # Lava mode permanently disabled.
+        self.lava_mode_active = False
 
-        curr_pos = (curr_state['map'], curr_state['x'], curr_state['y'])
+        curr_map, curr_x, curr_y = self._sanitize_position(curr_state)
+        curr_pos = (self._map_key(curr_state), curr_x, curr_y)
 
         # === EXPLORATION ===
         exp_cfg = w.get('exploration', {})
         if curr_pos not in self.visited_tiles:
             base_reward = exp_cfg.get('new_tile', 3.5)
-            distance = self._distance_to_nearest_center(curr_state['map'], curr_state['x'], curr_state['y'])
+            distance = self._distance_to_nearest_center(curr_map, curr_x, curr_y)
             distance_bonus = min(distance * 0.01, exp_cfg.get('new_tile_distance_bonus_max', 0.5))
             exp_reward = base_reward + distance_bonus
             reward += exp_reward
             breakdown['exploration'] += exp_reward
             self.visited_tiles.add(curr_pos)
 
-        if use_minimal_rewards:
-            if return_breakdown:
-                return reward, breakdown
-            return reward
-
-        if curr_state['map'] not in self.visited_buildings:
+        if self._map_key(curr_state) not in self.visited_buildings:
             building_reward = exp_cfg.get('new_building', 10.0)
             reward += building_reward
             breakdown['exploration'] += building_reward
-            self.visited_buildings.add(curr_state['map'])
+            self.visited_buildings.add(self._map_key(curr_state))
 
         # === FLOOR IS LAVA PENALTY (when in lava mode) ===
         if self.lava_mode_active:
@@ -344,7 +374,9 @@ class RewardCalculator:
         menu_item = curr_state.get('menu_item', 0)
         dialogue_active = curr_state.get('text_box_id', 0) > 0
 
-        if dialogue_active:
+        # Disable penalties until level 10 for clear early signal.
+        penalties_enabled = episode_level is None or episode_level >= 10
+        if penalties_enabled and dialogue_active:
             menu_penalty = 0.0
             if menu_item == 4:  # Save
                 menu_penalty = penalties_cfg.get('save_menu', 100.0)
@@ -538,7 +570,7 @@ class RewardCalculator:
                 breakdown['progression'] += heal_reward
 
             # Pokemon fainted (penalty)
-            if prev_mon['hp'] > 0 and curr_mon['hp'] == 0:
+            if penalties_enabled and prev_mon['hp'] > 0 and curr_mon['hp'] == 0:
                 faint_penalty = penalties_cfg.get('pokemon_fainted', 50.0)
                 faint_penalty *= noise_scale
                 reward -= faint_penalty
@@ -575,7 +607,7 @@ class RewardCalculator:
             money_reward = (curr_money - prev_money) * econ_cfg.get('money_earned_multiplier', 0.1)
             reward += money_reward
             breakdown['progression'] += money_reward
-        if curr_money == 0 and prev_money > 0:
+        if penalties_enabled and curr_money == 0 and prev_money > 0:
             broke_penalty = econ_cfg.get('broke_penalty', 20.0)
             broke_penalty *= noise_scale
             reward -= broke_penalty
@@ -591,7 +623,7 @@ class RewardCalculator:
                 stuck_penalty = penalties_cfg.get('stuck_500_frames', 50.0)
             elif self.stuck_frames >= 1000:
                 stuck_penalty = penalties_cfg.get('stuck_1000_frames', 200.0)
-            if stuck_penalty > 0:
+            if penalties_enabled and stuck_penalty > 0:
                 stuck_penalty *= noise_scale
                 reward -= stuck_penalty
                 breakdown['penalties'] -= stuck_penalty
@@ -606,6 +638,32 @@ class RewardCalculator:
                 print(f"  {C.GREEN}{C.BOLD}[LAVA MODE] Deactivated{C.RESET}{C.GREEN} - Positive reward gained!{C.RESET}")
                 self.lava_mode_active = False
                 self.lava_tile_visits.clear()
+
+        # Log reward trace for debugging.
+        try:
+            REWARD_LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+            breakdown_serialized = {k: float(v) for k, v in breakdown.items()}
+            reward_hash = hashlib.md5(
+                json.dumps(breakdown_serialized, sort_keys=True, ensure_ascii=True).encode("utf-8")
+            ).hexdigest()[:10]
+            payload = {
+                "ts": time.time(),
+                "reward": float(reward),
+                "hash": reward_hash,
+                "breakdown": breakdown_serialized,
+                "map_group": curr_state.get("map_group"),
+                "map_number": curr_state.get("map_number"),
+                "map": curr_state.get("map"),
+                "x": curr_state.get("x"),
+                "y": curr_state.get("y"),
+                "width": curr_state.get("map_width"),
+                "height": curr_state.get("map_height"),
+                "text_box_id": curr_state.get("text_box_id"),
+            }
+            with open(REWARD_LOG_PATH, "a", encoding="utf-8") as f:
+                f.write(json.dumps(payload, ensure_ascii=True) + "\n")
+        except Exception:
+            pass
 
         if return_breakdown:
             return reward, breakdown
