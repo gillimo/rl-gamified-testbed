@@ -1652,21 +1652,21 @@ def _format_checkpoint_card(path: Optional[str]) -> Optional[str]:
 
     lines = [
 
-        f"  {Colors.BLUE}╔{'═'*58}╗{Colors.RESET}",
+        f"  {Colors.BLUE}+{'-'*58}+{Colors.RESET}",
 
-        f"  {Colors.BLUE}║{Colors.RESET}  {Colors.BOLD}{Colors.CYAN}🧪 RESUME CHECKPOINT{Colors.RESET}                               {Colors.BLUE}║{Colors.RESET}",
+        f"  {Colors.BLUE}|{Colors.RESET}  {Colors.BOLD}{Colors.CYAN}🧪 RESUME CHECKPOINT{Colors.RESET}                               {Colors.BLUE}|{Colors.RESET}",
 
-        f"  {Colors.BLUE}╠{'═'*58}╣{Colors.RESET}",
+        f"  {Colors.BLUE}+{'-'*58}+{Colors.RESET}",
 
-        f"  {Colors.BLUE}║{Colors.RESET}  {Colors.WHITE}File:{Colors.RESET}  {Colors.ELECTRIC}{ckpt_path.name}{Colors.RESET}                 {Colors.BLUE}║{Colors.RESET}",
+        f"  {Colors.BLUE}|{Colors.RESET}  {Colors.WHITE}File:{Colors.RESET}  {Colors.ELECTRIC}{ckpt_path.name}{Colors.RESET}                 {Colors.BLUE}|{Colors.RESET}",
 
-        f"  {Colors.BLUE}║{Colors.RESET}  {Colors.WHITE}Path:{Colors.RESET}  {Colors.DIM}{ckpt_path}{Colors.RESET}      {Colors.BLUE}║{Colors.RESET}",
+        f"  {Colors.BLUE}|{Colors.RESET}  {Colors.WHITE}Path:{Colors.RESET}  {Colors.DIM}{ckpt_path}{Colors.RESET}      {Colors.BLUE}|{Colors.RESET}",
 
-        f"  {Colors.BLUE}║{Colors.RESET}  {Colors.WHITE}Steps:{Colors.RESET} {Colors.YELLOW}{steps}{Colors.RESET}   {Colors.WHITE}Size:{Colors.RESET} {size_mb:5.1f} MB        {Colors.BLUE}║{Colors.RESET}",
+        f"  {Colors.BLUE}|{Colors.RESET}  {Colors.WHITE}Steps:{Colors.RESET} {Colors.YELLOW}{steps}{Colors.RESET}   {Colors.WHITE}Size:{Colors.RESET} {size_mb:5.1f} MB        {Colors.BLUE}|{Colors.RESET}",
 
-        f"  {Colors.BLUE}║{Colors.RESET}  {Colors.DIM}Saved: {mtime}{Colors.RESET}                                     {Colors.BLUE}║{Colors.RESET}",
+        f"  {Colors.BLUE}|{Colors.RESET}  {Colors.DIM}Saved: {mtime}{Colors.RESET}                                     {Colors.BLUE}|{Colors.RESET}",
 
-        f"  {Colors.BLUE}╚{'═'*58}╝{Colors.RESET}",
+        f"  {Colors.BLUE}+{'-'*58}+{Colors.RESET}",
 
     ]
 
@@ -1714,14 +1714,14 @@ def main():
 
     # Print banner
 
-    print(f"\n  {Colors.PURPLE}╔{'═'*56}╗{Colors.RESET}")
-    print(f"  {Colors.PURPLE}║{Colors.RESET}  {Colors.BOLD}{Colors.YELLOW}⚡ POKEMON CRYSTAL PPO AGENT ⚡{Colors.RESET}                  {Colors.PURPLE}║{Colors.RESET}")
-    print(f"  {Colors.PURPLE}║{Colors.RESET}  {Colors.GHOST}👻 Proper RL with GAE & Value Baseline{Colors.RESET}            {Colors.PURPLE}║{Colors.RESET}")
-    print(f"  {Colors.PURPLE}╠{'═'*56}╣{Colors.RESET}")
-    print(f"  {Colors.PURPLE}║{Colors.RESET}  {Colors.WHITE}PPO: Proximal Policy Optimization{Colors.RESET}                  {Colors.PURPLE}║{Colors.RESET}")
-    print(f"  {Colors.PURPLE}║{Colors.RESET}  {Colors.GREEN}Decomposed Value Heads for reward categories{Colors.RESET}       {Colors.PURPLE}║{Colors.RESET}")
-    print(f"  {Colors.PURPLE}║{Colors.RESET}  {Colors.CYAN}Starter: {Colors.GHOST}Gastly{Colors.RESET} (Species {config.STARTER_SPECIES})                    {Colors.PURPLE}║{Colors.RESET}")
-    print(f"  {Colors.PURPLE}╚{'═'*56}╝{Colors.RESET}")
+    print(f"\n  {Colors.PURPLE}+{'-'*56}+{Colors.RESET}")
+    print(f"  {Colors.PURPLE}|{Colors.RESET}  {Colors.BOLD}{Colors.YELLOW}⚡ POKEMON CRYSTAL PPO AGENT ⚡{Colors.RESET}                  {Colors.PURPLE}|{Colors.RESET}")
+    print(f"  {Colors.PURPLE}|{Colors.RESET}  {Colors.GHOST}👻 Proper RL with GAE & Value Baseline{Colors.RESET}            {Colors.PURPLE}|{Colors.RESET}")
+    print(f"  {Colors.PURPLE}+{'-'*56}+{Colors.RESET}")
+    print(f"  {Colors.PURPLE}|{Colors.RESET}  {Colors.WHITE}PPO: Proximal Policy Optimization{Colors.RESET}                  {Colors.PURPLE}|{Colors.RESET}")
+    print(f"  {Colors.PURPLE}|{Colors.RESET}  {Colors.GREEN}Decomposed Value Heads for reward categories{Colors.RESET}       {Colors.PURPLE}|{Colors.RESET}")
+    print(f"  {Colors.PURPLE}|{Colors.RESET}  {Colors.CYAN}Starter: {Colors.GHOST}Gastly{Colors.RESET} (Species {config.STARTER_SPECIES})                    {Colors.PURPLE}|{Colors.RESET}")
+    print(f"  {Colors.PURPLE}+{'-'*56}+{Colors.RESET}")
 
 
 
