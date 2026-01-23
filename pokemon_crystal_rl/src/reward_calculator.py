@@ -213,10 +213,6 @@ class RewardCalculator:
         map_group = state.get('map_group')
         map_number = state.get('map_number')
         map_id = state.get('map', 0)
-        x = state.get('x', 0)
-        y = state.get('y', 0)
-        width = state.get('map_width')
-        height = state.get('map_height')
 
         if party_count < 0 or party_count > 6:
             return True
@@ -230,10 +226,6 @@ class RewardCalculator:
                 return True
         elif map_id == 0:
             return True
-        # Coordinates should stay within the reported map bounds.
-        if isinstance(width, int) and isinstance(height, int) and width > 0 and height > 0:
-            if x < 0 or y < 0 or x >= width or y >= height:
-                return True
         return False
 
     def _party_has_move(self, state: Dict, move_id: int) -> bool:
@@ -358,14 +350,19 @@ class RewardCalculator:
         # Lava mode permanently disabled.
         self.lava_mode_active = False
 
-        curr_map, curr_x, curr_y = self._sanitize_position(curr_state)
+        curr_map = int(curr_state.get("map", 0))
+        curr_x = int(curr_state.get("x", 0))
+        curr_y = int(curr_state.get("y", 0))
         curr_pos = (self._map_key(curr_state), curr_x, curr_y)
+        prev_pos = (self._map_key(prev_state), int(prev_state.get("x", 0)), int(prev_state.get("y", 0)))
 
         # === EXPLORATION ===
         exp_cfg = w.get('exploration', {})
         new_tile_awarded = False
         new_tile_value = 0.0
-        if curr_pos not in self.visited_tiles:
+        same_map = prev_pos[0] == curr_pos[0]
+        moved = (prev_pos[1] != curr_pos[1]) or (prev_pos[2] != curr_pos[2])
+        if moved and same_map and curr_pos not in self.visited_tiles:
             base_reward = exp_cfg.get('new_tile', 3.5)
             distance = self._distance_to_nearest_center(curr_map, curr_x, curr_y)
             distance_bonus = min(distance * 0.01, exp_cfg.get('new_tile_distance_bonus_max', 0.5))
@@ -705,6 +702,8 @@ class RewardCalculator:
                 "new_tile_awarded": bool(new_tile_awarded),
                 "new_tile_value": float(new_tile_value),
                 "reason": "new_tile" if new_tile_awarded else "repeat_tile",
+                "moved": bool(moved),
+                "same_map": bool(same_map),
                 "map_key": self._map_key(curr_state),
                 "map_group": curr_state.get("map_group"),
                 "map_number": curr_state.get("map_number"),
