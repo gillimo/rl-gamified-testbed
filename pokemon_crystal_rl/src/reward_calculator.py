@@ -56,6 +56,7 @@ HM_MOVES = {
 # Weights file path (relative to this module)
 WEIGHTS_PATH = Path(__file__).parent.parent / "weights.json"
 REWARD_LOG_PATH = Path(__file__).parent.parent / "logs" / "reward_trace.jsonl"
+WALK_AUDIT_PATH = Path(__file__).parent.parent / "logs" / "walk_audit.jsonl"
 
 
 def load_weights() -> Dict:
@@ -109,6 +110,9 @@ class RewardCalculator:
 
         # HM usage tracking (anti-spam)
         self.last_hm_tile: Optional[Tuple[int, int, int, int]] = None  # (map, x, y, tile_ahead)
+
+        # Walk audit tracking
+        self.step_index = 0
 
         # === HM HOT/COLD TRACKING ===
         # Track active HM targets for "hot/cold" pursuit game
@@ -266,6 +270,9 @@ class RewardCalculator:
         # Check for weights update
         self.reload_weights()
 
+        # Step audit counter
+        self.step_index += 1
+
         # Initialize breakdown dict for PPO decomposed rewards
         breakdown = {
             'exploration': 0.0,
@@ -277,6 +284,26 @@ class RewardCalculator:
 
         # Skip if either state looks like garbage memory
         if self._is_garbage_state(prev_state) or self._is_garbage_state(curr_state):
+            try:
+                WALK_AUDIT_PATH.parent.mkdir(parents=True, exist_ok=True)
+                payload = {
+                    "step": self.step_index,
+                    "reward_total": 0.0,
+                    "new_tile_awarded": False,
+                    "new_tile_value": 0.0,
+                    "reason": "garbage_state",
+                    "map_group": curr_state.get("map_group"),
+                    "map_number": curr_state.get("map_number"),
+                    "map": curr_state.get("map"),
+                    "x": curr_state.get("x"),
+                    "y": curr_state.get("y"),
+                    "width": curr_state.get("map_width"),
+                    "height": curr_state.get("map_height"),
+                }
+                with open(WALK_AUDIT_PATH, "a", encoding="utf-8") as f:
+                    f.write(json.dumps(payload, ensure_ascii=True) + "\n")
+            except Exception:
+                pass
             if return_breakdown:
                 return 0.0, breakdown
             return 0.0
@@ -336,6 +363,8 @@ class RewardCalculator:
 
         # === EXPLORATION ===
         exp_cfg = w.get('exploration', {})
+        new_tile_awarded = False
+        new_tile_value = 0.0
         if curr_pos not in self.visited_tiles:
             base_reward = exp_cfg.get('new_tile', 3.5)
             distance = self._distance_to_nearest_center(curr_map, curr_x, curr_y)
@@ -344,6 +373,8 @@ class RewardCalculator:
             reward += exp_reward
             breakdown['exploration'] += exp_reward
             self.visited_tiles.add(curr_pos)
+            new_tile_awarded = True
+            new_tile_value = exp_reward
 
         if self._map_key(curr_state) not in self.visited_buildings:
             building_reward = exp_cfg.get('new_building', 10.0)
@@ -661,6 +692,29 @@ class RewardCalculator:
                 "text_box_id": curr_state.get("text_box_id"),
             }
             with open(REWARD_LOG_PATH, "a", encoding="utf-8") as f:
+                f.write(json.dumps(payload, ensure_ascii=True) + "\n")
+        except Exception:
+            pass
+
+        # Walk audit log (per step)
+        try:
+            WALK_AUDIT_PATH.parent.mkdir(parents=True, exist_ok=True)
+            payload = {
+                "step": self.step_index,
+                "reward_total": float(reward),
+                "new_tile_awarded": bool(new_tile_awarded),
+                "new_tile_value": float(new_tile_value),
+                "reason": "new_tile" if new_tile_awarded else "repeat_tile",
+                "map_key": self._map_key(curr_state),
+                "map_group": curr_state.get("map_group"),
+                "map_number": curr_state.get("map_number"),
+                "map": curr_state.get("map"),
+                "x": curr_state.get("x"),
+                "y": curr_state.get("y"),
+                "width": curr_state.get("map_width"),
+                "height": curr_state.get("map_height"),
+            }
+            with open(WALK_AUDIT_PATH, "a", encoding="utf-8") as f:
                 f.write(json.dumps(payload, ensure_ascii=True) + "\n")
         except Exception:
             pass

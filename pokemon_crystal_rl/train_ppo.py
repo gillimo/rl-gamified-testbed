@@ -65,6 +65,7 @@ from pokemon_env import PokemonCrystalEnv, REWARD_CATEGORIES
 from decomposed_policy import DecomposedActorCriticPolicy
 
 from src.trainer_stats import TrainerStats
+from src.cli_ui import print_heartbeat, print_episode_box
 
 from set_starter import set_starter
 
@@ -159,6 +160,7 @@ class PokemonTrainingCallback(BaseCallback):
         self.episode_best_moment_breakdown = {}
 
         self.heartbeat_printed = False  # track if we need to overwrite
+        self.last_heartbeat_lines = 0
 
         self.episode_peak_reward = 0.0
 
@@ -203,6 +205,7 @@ class PokemonTrainingCallback(BaseCallback):
             Colors.CYAN,
 
         ]
+        self.Colors = Colors
 
 
 
@@ -629,6 +632,7 @@ class PokemonTrainingCallback(BaseCallback):
     def _print_heartbeat(self):
 
         """Print kid-friendly boxed progress that updates in place."""
+        return print_heartbeat(self)
 
         # Calculate progress
 
@@ -1070,7 +1074,7 @@ class PokemonTrainingCallback(BaseCallback):
         for line in lines:
             sys.stdout.write(f"\033[2K\r{Colors.CYAN}{line}{Colors.RESET}\n")
 
-
+        self.last_heartbeat_lines = len(lines)
 
         self.prev_avg_reward_ema = self.avg_reward_ema
 
@@ -1134,6 +1138,16 @@ class PokemonTrainingCallback(BaseCallback):
 
     def _print_episode_box(self, info: dict):
         """Print RPG-style episode complete box."""
+        return print_episode_box(self, info)
+        # Clear heartbeat box so summary does not overlap.
+        if self.heartbeat_printed and self.last_heartbeat_lines > 0:
+            clear_lines = self.last_heartbeat_lines + 6
+            sys.stdout.write(f"\033[{clear_lines}A")
+            for _ in range(clear_lines):
+                sys.stdout.write("\033[2K\r\n")
+            sys.stdout.write(f"\033[{clear_lines}A")
+            self.heartbeat_printed = False
+
         # Print newline to move past the heartbeat line
         print()
 
