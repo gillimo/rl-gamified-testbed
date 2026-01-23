@@ -113,6 +113,8 @@ class RewardCalculator:
 
         # Walk audit tracking
         self.step_index = 0
+        self.last_move_dir: Optional[str] = None
+        self.move_streak = 0
 
         # === HM HOT/COLD TRACKING ===
         # Track active HM targets for "hot/cold" pursuit game
@@ -129,6 +131,12 @@ class RewardCalculator:
         self.lava_mode_active = False
         self.lava_tile_visits: Dict[Tuple[int, int, int], int] = {}  # (map, x, y) -> visit count
         self.last_gravity_metrics: Optional[Dict] = None
+
+        # Door bonus tracking (gravity-free)
+        self.doors_per_map: Dict[object, Set[Tuple[int, int]]] = {}
+        self.door_last_used: Dict[Tuple[object, int, int], float] = {}
+        self.door_value_scale: Dict[Tuple[object, int, int], float] = {}
+        self.last_transition: Optional[Tuple[object, object]] = None
 
         # === BATTLE TRACKING ===
         self.prev_enemy_hp = 0
@@ -373,11 +381,79 @@ class RewardCalculator:
             new_tile_awarded = True
             new_tile_value = exp_reward
 
+        # === DIRECTION STREAK BONUS ===
+        # Reward sustained movement in one direction; reset on wall bump or direction change.
+        if same_map and moved:
+            dx = curr_pos[1] - prev_pos[1]
+            dy = curr_pos[2] - prev_pos[2]
+            if dx == 1 and dy == 0:
+                curr_dir = "RIGHT"
+            elif dx == -1 and dy == 0:
+                curr_dir = "LEFT"
+            elif dx == 0 and dy == 1:
+                curr_dir = "DOWN"
+            elif dx == 0 and dy == -1:
+                curr_dir = "UP"
+            else:
+                curr_dir = None
+
+            if curr_dir is not None and curr_dir == self.last_move_dir:
+                self.move_streak += 1
+            elif curr_dir is not None:
+                self.move_streak = 1
+                self.last_move_dir = curr_dir
+            else:
+                self.move_streak = 0
+                self.last_move_dir = None
+
+            if self.move_streak >= 2:
+                streak_bonus = 2.0
+                reward += streak_bonus
+                breakdown['exploration'] += streak_bonus
+        else:
+            self.move_streak = 0
+            self.last_move_dir = None
+
         if self._map_key(curr_state) not in self.visited_buildings:
             building_reward = exp_cfg.get('new_building', 10.0)
             reward += building_reward
             breakdown['exploration'] += building_reward
             self.visited_buildings.add(self._map_key(curr_state))
+
+        # === DOOR BONUS (gravity-free) ===
+        # Detect door transitions via map change.
+        prev_map_key = self._map_key(prev_state)
+        curr_map_key = self._map_key(curr_state)
+        if prev_map_key != curr_map_key:
+            prev_xy = (int(prev_state.get("x", 0)), int(prev_state.get("y", 0)))
+            self.doors_per_map.setdefault(prev_map_key, set()).add(prev_xy)
+            door_key = (prev_map_key, prev_xy[0], prev_xy[1])
+            door_value = 2.5 * exp_cfg.get('new_tile', 3.5)
+            scale = self.door_value_scale.get(door_key, 1.0)
+            door_reward = door_value * scale
+
+            # Backtrack detection (reverse transition)
+            is_backtrack = self.last_transition == (curr_map_key, prev_map_key)
+            door_count = len(self.doors_per_map.get(prev_map_key, set()))
+            now = time.time()
+
+            if is_backtrack and door_count > 1:
+                reward -= door_reward
+                breakdown['penalties'] -= door_reward
+                self.door_value_scale[door_key] = 0.8
+            else:
+                # If only one door in the room, penalize repeated use within 20 seconds.
+                last_time = self.door_last_used.get(door_key)
+                if door_count <= 1 and last_time is not None and (now - last_time) < 20.0:
+                    reward -= door_reward
+                    breakdown['penalties'] -= door_reward
+                    self.door_value_scale[door_key] = 0.8
+                else:
+                    reward += door_reward
+                    breakdown['exploration'] += door_reward
+
+            self.door_last_used[door_key] = now
+            self.last_transition = (prev_map_key, curr_map_key)
 
         # === FLOOR IS LAVA PENALTY (when in lava mode) ===
         if self.lava_mode_active:
