@@ -14,3 +14,8 @@ Quickstart:
 
 RL:
 - See `pokemon_crystal_rl/README.md` (internal)
+
+## Metadata
+- Completeness: 60%
+- Known issues: Training/reward values need tuning; core system functional
+
