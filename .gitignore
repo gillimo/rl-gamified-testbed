@@ -13,3 +13,5 @@ __pycache__/
 # OS-specific
 .DS_Store
 Thumbs.db
+# Ignore large emulator distribution files
+/tools/bizhawk/BizHawk-*.zip
